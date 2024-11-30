@@ -14,12 +14,15 @@
     <!-- Formularz logowania -->
     <div class="container">
         <form method="post">
-            <label for="email">Adres e-mail:</label><br>
-            <input type="email" id="email" name="email" required><br><br>
+            <!-- Nazwa użytkownika lub e-mail -->
+            <label for="username_or_email">Nazwa użytkownika lub adres e-mail:</label><br>
+            <input type="text" id="username_or_email" name="username_or_email" required><br><br>
 
+            <!-- Hasło -->
             <label for="password">Hasło:</label><br>
             <input type="password" id="password" name="password" required><br><br>
 
+            <!-- Przycisk logowania -->
             <input type="submit" value="Zaloguj się">
         </form>
         <p>Nie masz konta? <a href="{{ url_for('signup') }}">Zarejestruj się</a></p>

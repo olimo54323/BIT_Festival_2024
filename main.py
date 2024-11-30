@@ -1,9 +1,8 @@
-# main.py
-
 from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
+from math import sqrt
 
 from models import db
 from models.user import User
@@ -15,8 +14,8 @@ from models.hobby import Hobby
 app = Flask(__name__)
 
 # Konfiguracja aplikacji
-app.config['SECRET_KEY'] = 'your_secret_key'  # Ustaw swój klucz sekretu
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root:mysql@localhost/bit'
+app.config['SECRET_KEY'] = 'your_secret_key'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:mysql@localhost/bit'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # Inicjalizacja bazy danych
@@ -73,15 +72,19 @@ def signup():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        name = request.form['username']
+        username_or_email = request.form['username_or_email']
         password = request.form['password']
 
-        user = User.query.filter_by(name=name).first()
+        # Sprawdź, czy dane wejściowe to e-mail czy nazwa użytkownika
+        user = User.query.filter(
+            (User.name == username_or_email) | (User.email == username_or_email)
+        ).first()
+
         if user and check_password_hash(user.password, password):
             login_user(user)
             return redirect(url_for('quiz'))
         else:
-            flash('Nieprawidłowa nazwa użytkownika lub hasło.')
+            flash('Nieprawidłowa nazwa użytkownika/adres e-mail lub hasło.')
             return redirect(url_for('login'))
 
     return render_template('login.html')
@@ -106,6 +109,10 @@ answer_values = {
 @app.route('/quiz', methods=['GET', 'POST'])
 @login_required
 def quiz():
+    if current_user.is_admin:
+        flash('Administratorzy nie mają dostępu do quizu.')
+        return redirect(url_for('index'))
+
     if request.method == 'POST':
         total_score_x = 0
         total_score_y = 0
@@ -129,35 +136,30 @@ def quiz():
         db.session.commit()
 
         # Rekomendacja hobby na podstawie wyniku
-        recommended_hobbies = recommend_hobby(total_score_x, total_score_y)
+        recommended_hobbies = vector_search(total_score_x, total_score_y, top_n=5)
 
         return render_template('result.html', total_score_x=total_score_x, total_score_y=total_score_y, recommended_hobbies=recommended_hobbies)
     else:
         questions = Question.query.all()
         return render_template('quiz.html', questions=questions)
 
-# Funkcja rekomendująca hobby
-def recommend_hobby(total_score_x, total_score_y):
-    # Mapowanie kategorii na wartości osi
-    category_axis_values = {
-        'Samodzielny i Artystyczny': {'x': -10, 'y': -10},
-        'Samodzielny i Sportowy': {'x': -10, 'y': 10},
-        'Grupowy i Artystyczny': {'x': 10, 'y': -10},
-        'Grupowy i Sportowy': {'x': 10, 'y': 10}
-    }
-
+# Funkcja wyszukiwania wektorowego
+def vector_search(total_score_x, total_score_y, top_n=5):
     hobbies = Hobby.query.join(Category).all()
-    recommended = []
+    results = []
 
     for hobby in hobbies:
-        category_name = hobby.category.category
-        axis_values = category_axis_values.get(category_name)
-        if axis_values:
-            distance = ((axis_values['x'] - total_score_x) ** 2 + (axis_values['y'] - total_score_y) ** 2) ** 0.5
-            recommended.append((distance, hobby.hobby))
-    recommended.sort()
-    top_hobbies = [name for _, name in recommended[:5]]
-    return top_hobbies
+        category = hobby.category
+        axis_x = category.axis_x
+        axis_y = category.axis_y
+        distance = sqrt((axis_x - total_score_x) ** 2 + (axis_y - total_score_y) ** 2)
+        results.append({
+            "hobby": hobby.hobby,
+            "distance": distance
+        })
+
+    results.sort(key=lambda x: x["distance"])
+    return results[:top_n]
 
 if __name__ == '__main__':
     app.run(debug=True)
