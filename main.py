@@ -42,7 +42,15 @@ answer_values = {
 # Routes remain the same until chat functionality
 @app.route('/')
 def index():
-    return render_template("index.html")
+    recommended_hobbies = []
+    if current_user.is_authenticated:
+        # Check if the user has taken the quiz
+        result = Result.query.filter_by(user_id=current_user.user_id).order_by(Result.result_id.desc()).first()
+        if result:
+            # Get recommended hobbies based on the latest quiz result
+            recommended_hobbies = vector_search(result.axis_x, result.axis_y, top_n=5)
+    
+    return render_template("index.html", recommended_hobbies=recommended_hobbies)
 
 @app.route('/base')
 def base():
@@ -141,7 +149,7 @@ def single_question(question_id):
             if question_id < total_questions:
                 return redirect(url_for('single_question', question_id=question_id + 1))
             else:
-                return redirect(url_for('quiz_results'))
+                return redirect(url_for('index'))
 
     return render_template('quiz.html', 
                          question=question, 

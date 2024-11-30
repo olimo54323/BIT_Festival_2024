@@ -32,8 +32,31 @@
     </header>
     
     <!-- Zawartość strony -->
-    <div class="content">
+    
+    {% if current_user.is_authenticated %}
+        <h1>Witaj, {{ current_user.name }}!</h1>
         
-    </div>
+        {% if recommended_hobbies %}
+            <h2>Polecane hobby:</h2>
+            <div class="recommended-hobbies">
+                {% for hobby in recommended_hobbies %}
+                <div class="hobby-item">
+                    <h3>
+                        <a href="{{ url_for('hobby_detail', name=hobby.hobby) }}">
+                            {{ hobby.hobby }}
+                        </a>
+                    </h3>
+                    <p>{{ hobby.description }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>Aby uzyskać spersonalizowane rekomendacje hobby, przejdź do quizu!</p>
+            <a href="{{ url_for('single_question', question_id=1) }}" class="btn">Rozpocznij quiz</a>
+        {% endif %}
+    {% else %}
+        <h1>Odkryj swoje idealne hobby!</h1>
+        <p>Zaloguj się lub zarejestruj, aby wziąć udział w quizie i odkryć hobby dopasowane do Twojej osobowości.</p>
+    {% endif %}
 </body>
 </html>

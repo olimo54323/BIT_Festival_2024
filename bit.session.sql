@@ -80,6 +80,9 @@ SELECT * FROM hobbys
 SELECT * FROM categories
 
 -- @block
+SELECT * FROM users
+
+-- @block
 SELECT * FROM questions
 
 -- @block
