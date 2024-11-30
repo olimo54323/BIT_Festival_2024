@@ -137,3 +137,42 @@ INSERT INTO questions (question_id, question, axis) VALUES (37, 'Czy wolisz szki
 INSERT INTO questions (question_id, question, axis) VALUES (38, 'Czy wolisz samotne podróże czy zorganizowane wycieczki grupowe?', 'X');
 INSERT INTO questions (question_id, question, axis) VALUES (39, 'Czy wolisz pisać poezję czy trenować boks?', 'Y');
 INSERT INTO questions (question_id, question, axis) VALUES (40, 'Czy cenisz bardziej swoje osiągnięcia czy wspólny sukces zespołu?', 'X');
+
+
+-- @block
+CREATE TABLE chatrooms (
+    room_id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(255) NOT NULL UNIQUE,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    created_by INT,
+    FOREIGN KEY (created_by) REFERENCES users(user_id)
+);
+
+-- @block
+CREATE TABLE messages (
+    message_id INT PRIMARY KEY AUTO_INCREMENT,
+    content TEXT NOT NULL,
+    timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
+    room_id INT,
+    user_id INT,
+    FOREIGN KEY (room_id) REFERENCES chatrooms(room_id),
+    FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
+
+-- @block
+CREATE TABLE room_participants (
+    room_id INT,
+    user_id INT,
+    PRIMARY KEY (room_id, user_id),
+    FOREIGN KEY (room_id) REFERENCES chatrooms(room_id),
+    FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
+
+-- @block
+INSERT INTO chatrooms (room_id, name, created_at, created_by)
+VALUES (
+    "5",
+    "Technologiczne",
+    "1970-01-01 10:10:10 ",
+    "1"
+  );
