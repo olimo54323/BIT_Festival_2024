@@ -35,6 +35,14 @@ CREATE TABLE hobbys(
 
 -- @block
 ALTER TABLE hobbys
+ADD COLUMN axis_x INT NOT NULL;
+
+-- @block
+ALTER TABLE hobbys
+ADD COLUMN axis_y INT NOT NULL;
+
+-- @block
+ALTER TABLE hobbys
 ADD COLUMN description TEXT;
 
 
