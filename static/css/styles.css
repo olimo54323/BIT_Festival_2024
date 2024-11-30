@@ -1,0 +1,27 @@
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 20px;
+}
+header {
+    background: #0073e6;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+}
+nav {
+    margin: 10px 0;
+}
+nav a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: #0073e6;
+}
+main {
+    margin-top: 20px;
+}
+footer {
+    text-align: center;
+    margin-top: 20px;
+    color: #555;
+}
