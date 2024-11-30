@@ -1,5 +1,0 @@
-INSERT INTO hobbys (hobby_id, hobby, category_id) VALUES (1, 'Pisanie', 1);
-INSERT INTO hobbys (hobby_id, hobby, category_id) VALUES (2, 'Fotografia', 1);
-INSERT INTO hobbys (hobby_id, hobby, category_id) VALUES (3, 'Malowanie', 1);
-INSERT INTO hobbys (hobby_id, hobby, category_id) VALUES (4, 'Rysunek', 1);
-INSERT INTO hobbys (hobby_id, hobby, category_id) VALUES (5, 'Rzeźbiarstwo', 1);
