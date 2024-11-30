@@ -11,9 +11,11 @@
         <h2>{{ category.category }}</h2>
         <ul class="hobby-list">
             {% for hobby in category.hobbies %}
-            <li>{{ hobby.hobby }}</li>
+            <li>
+                <a href="{{ url_for('hobby_detail', name=hobby.hobby) }}">{{ hobby.hobby }}</a>
+            </li>
             {% endfor %}
-        </ul>
+        </ul>       
     </div>
     {% endfor %}
     

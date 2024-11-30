@@ -11,7 +11,9 @@
     <h2>Rekomendowane hobby:</h2>
     <ul>
         {% for hobby in recommended_hobbies %}
-            <li>{{ hobby['hobby'] }} </li>
+            <li>
+                <a href="{{ url_for('hobby_detail', name=hobby['hobby']) }}">{{ hobby['hobby'] }}</a>
+            </li>
         {% endfor %}
     </ul>
     <a href="{{ url_for('quiz') }}"><button>Wypełnij quiz ponownie</button></a>
