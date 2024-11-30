@@ -36,3 +36,9 @@ CREATE TABLE categories(
     category_id INT PRIMARY KEY AUTO_INCREMENT,
     category VARCHAR(255) NOT NULL UNIQUE
 );
+
+-- @block
+SELECT * FROM users;
+
+-- @block
+select * from questions;
