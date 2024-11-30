@@ -175,7 +175,8 @@ def quiz_results():
     # Wyczyść odpowiedzi z sesji
     session.pop('answers', None)
     
-    return redirect(url_for('results'))
+    return redirect(url_for('quiz_results'))
+
 
 
 
