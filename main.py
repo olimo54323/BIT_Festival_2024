@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import Flask, render_template, request, redirect, url_for, flash, session
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -109,26 +109,44 @@ def categories():
     categories = Category.query.all()
     return render_template('categories.html', categories=categories)
 
+<<<<<<< HEAD
 @app.route('/quiz', methods=['GET', 'POST'])
-@login_required
-def quiz():
-    if request.method == 'POST':
-        total_score_x = 0
-        total_score_y = 0
-        answers = []
-        questions = Question.query.all()
-        for question in questions:
-            answer = request.form.get(f'question_{question.question_id}')
-            if answer:
-                score = answer_values.get(answer, 0)
-                if question.axis == 'X':
-                    total_score_x += score
-                elif question.axis == 'Y':
-                    total_score_y += score
-                answers.append({'question_id': question.question_id, 'score': score})
-            else:
-                answers.append({'question_id': question.question_id, 'score': 0})
+=======
 
+# Formularz z pytaniami (quiz)
+@app.route('/quiz/<int:question_id>', methods=['GET', 'POST'])
+>>>>>>> a7c383499b5f36d9f4cba403d14e63ac1dd86acb
+@login_required
+def single_question(question_id):
+    """
+    Wyświetla jedno pytanie quizu i obsługuje odpowiedzi.
+    """
+    questions = Question.query.all()
+    question = Question.query.get_or_404(question_id)
+    total_questions = len(questions)
+    
+    # Obsługa POST
+    if request.method == 'POST':
+        answer = request.form.get(f'question_{question_id}')
+        if answer:
+            # Zapisz odpowiedź w sesji
+            if 'answers' not in session:
+                session['answers'] = {}
+            session['answers'][str(question_id)] = answer
+
+            # Przejdź do następnego pytania, jeśli istnieje
+            if question_id < total_questions:
+                return redirect(url_for('single_question', question_id=question_id + 1))
+            else:
+                # Jeśli ostatnie pytanie, zakończ quiz
+                return redirect(url_for('quiz_results'))
+    
+    # Pobierz odpowiedzi z sesji
+    answers = session.get('answers', {})
+    
+    return render_template('quiz.html', question=question, question_id=question_id, total_questions=total_questions, answers=answers)
+
+<<<<<<< HEAD
         result = Result(user_id=current_user.user_id, axis_x=total_score_x, axis_y=total_score_y)
         db.session.add(result)
         db.session.commit()
@@ -148,6 +166,40 @@ def results():
     else:
         flash('Nie znaleziono wyników. Wykonaj quiz.')
         return redirect(url_for('quiz'))
+=======
+
+# Wyświetlenie wyników
+@app.route('/result', methods=['GET', 'POST'])
+@login_required
+def quiz_results():
+    """
+    Zapisuje wyniki quizu i przekierowuje do strony wyników.
+    """
+    answers = session.get('answers', {})
+    total_score_x = 0
+    total_score_y = 0
+
+    for question_id, answer in answers.items():
+        question = Question.query.get(int(question_id))
+        score = answer_values.get(answer, 0)
+        if question.axis == 'X':
+            total_score_x += score
+        elif question.axis == 'Y':
+            total_score_y += score
+
+    # Zapisz wynik użytkownika w bazie danych
+    result = Result(user_id=current_user.user_id, axis_x=total_score_x, axis_y=total_score_y)
+    db.session.add(result)
+    db.session.commit()
+
+    # Wyczyść odpowiedzi z sesji
+    session.pop('answers', None)
+    
+    return redirect(url_for('quiz_results'))
+
+
+
+>>>>>>> a7c383499b5f36d9f4cba403d14e63ac1dd86acb
 
 @app.route('/hobby/<name>')
 def hobby_detail(name):
@@ -211,13 +263,19 @@ def vector_search(total_score_x, total_score_y, top_n=5):
         distance = sqrt((hobby.axis_x - total_score_x) ** 2 + 
                         (hobby.axis_y - total_score_y) ** 2)
         results.append({
-            "hobby_id": hobby.hobby_id,
             "hobby": hobby.hobby,
+            "hobby_id": hobby.hobby_id,
+            "description": hobby.description,
             "distance": distance
         })
 
     results.sort(key=lambda x: x["distance"])
     return results[:top_n]
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> a7c383499b5f36d9f4cba403d14e63ac1dd86acb
 if __name__ == '__main__':
     socketio.run(app, debug=True)

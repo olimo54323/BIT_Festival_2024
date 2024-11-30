@@ -17,13 +17,13 @@
         <nav>
             <ul>
                 <li><a href="{{ url_for('categories') }}">Kategorie</a></li>
-                <li><a href="{{ url_for('quiz') }}">Quiz</a></li>
+                <li><a href="{{ url_for('single_question', question_id=1) }}">Quiz</a></li>
                 <li><a href="{{ url_for('about') }}">O aplikacji</a></li>
             </ul>
         </nav>
         <div class="login-container">
             <a href="{{ url_for('login') }}">
-                <img src="{{ url_for('static', filename='images/login.png') }}" alt="Zaloguj się" class="login-icon">
+                <img src="{{ url_for('static', filename='images/login.webp') }}" alt="Zaloguj się" class="login-icon">
             </a>
         </div>
     </header>
@@ -39,7 +39,7 @@
             <ul>
                 <li><strong>Rejestracja:</strong> Utwórz konto, aby zapisać swoje wyniki testów.</li>
                 <li><strong>Logowanie:</strong> Zaloguj się na swoje konto, aby przeglądać historię testów.</li>
-                <li><strong>Test:</strong> Rozwiąż quiz, aby sprawdzić swoją wiedzę lub umiejętności.</li>
+                <li><strong>Quiz:</strong> Rozwiąż quiz, aby poznać proponowane hobby.</li>
             </ul>
         </section>
 
