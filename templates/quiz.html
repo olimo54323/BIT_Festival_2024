@@ -6,45 +6,66 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/quiz.css') }}">
 </head>
 <body>
-    <!-- Nawigacja z listą -->
+    <!-- Nawigacja -->
     <nav>
         <ul>
             <li><h1>Odkryj Swoje Hobby</h1></li>
+            <li>
+                <p>Pytanie {{ question_id }} z {{ total_questions }}</p>
+            </li>
         </ul>
     </nav>
 
-    <!-- Formularz z pytaniami -->
+    <!-- Formularz pytania -->
     <div class="container">
         <form method="post">
-            {% for question in questions %}
             <div class="question">
-                <p><strong>Pytanie {{ loop.index }}:</strong> {{ question.question }}</p>
+                <p><strong>Pytanie:</strong> {{ question.question }}</p>
                 <div class="options">
                     <label>
-                        <input type="radio" name="question_{{ question.question_id }}" value="zdecydowanie_tak" required>
+                        <input type="radio" name="question_{{ question.question_id }}" value="zdecydowanie_tak" required {% if answers[question_id|string] == 'zdecydowanie_tak' %}checked{% endif %}>
                         Zdecydowanie tak
                     </label><br>
                     <label>
-                        <input type="radio" name="question_{{ question.question_id }}" value="chyba_tak">
+                        <input type="radio" name="question_{{ question.question_id }}" value="chyba_tak" {% if answers[question_id|string] == 'chyba_tak' %}checked{% endif %}>
                         Chyba tak
                     </label><br>
                     <label>
-                        <input type="radio" name="question_{{ question.question_id }}" value="nie_wiem">
+                        <input type="radio" name="question_{{ question.question_id }}" value="nie_wiem" {% if answers[question_id|string] == 'nie_wiem' %}checked{% endif %}>
                         Nie wiem
                     </label><br>
                     <label>
-                        <input type="radio" name="question_{{ question.question_id }}" value="chyba_nie">
+                        <input type="radio" name="question_{{ question.question_id }}" value="chyba_nie" {% if answers[question_id|string] == 'chyba_nie' %}checked{% endif %}>
                         Chyba nie
                     </label><br>
                     <label>
-                        <input type="radio" name="question_{{ question.question_id }}" value="zdecydowanie_nie">
+                        <input type="radio" name="question_{{ question.question_id }}" value="zdecydowanie_nie" {% if answers[question_id|string] == 'zdecydowanie_nie' %}checked{% endif %}>
                         Zdecydowanie nie
                     </label>
                 </div>
             </div>
-            {% endfor %}
-            <input type="submit" value="Wyślij">
+            <div class="navigation">
+                {% if question_id > 1 %}
+                <a href="{{ url_for('single_question', question_id=question_id - 1) }}"><button type="button">Poprzednie pytanie</button></a>
+                {% endif %}
+                <input type="submit" value="Zatwierdź i przejdź dalej">
+            </div>
         </form>
+
+        <!-- Lista pytań -->
+        <div class="question-list">
+            <h3>Lista pytań</h3>
+            <ul>
+                {% for q in range(1, total_questions + 1) %}
+                <li>
+                    <a href="{{ url_for('single_question', question_id=q) }}">Pytanie {{ q }}</a>
+                    {% if q|string in answers %}
+                        - Odpowiedziano
+                    {% endif %}
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
     </div>
 </body>
 </html>

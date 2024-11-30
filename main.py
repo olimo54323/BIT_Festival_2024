@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import Flask, render_template, request, redirect, url_for, flash, session
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -116,47 +116,67 @@ def categories():
 
 
 # Formularz z pytaniami (quiz)
-@app.route('/quiz', methods=['GET', 'POST'])
+@app.route('/quiz/<int:question_id>', methods=['GET', 'POST'])
 @login_required
-def quiz():
+def single_question(question_id):
+    """
+    Wyświetla jedno pytanie quizu i obsługuje odpowiedzi.
+    """
+    questions = Question.query.all()
+    question = Question.query.get_or_404(question_id)
+    total_questions = len(questions)
+    
+    # Obsługa POST
     if request.method == 'POST':
-        total_score_x = 0
-        total_score_y = 0
-        answers = []
-        questions = Question.query.all()
-        for question in questions:
-            answer = request.form.get(f'question_{question.question_id}')
-            if answer:
-                score = answer_values.get(answer, 0)
-                if question.axis == 'X':
-                    total_score_x += score
-                elif question.axis == 'Y':
-                    total_score_y += score
-                answers.append({'question_id': question.question_id, 'score': score})
+        answer = request.form.get(f'question_{question_id}')
+        if answer:
+            # Zapisz odpowiedź w sesji
+            if 'answers' not in session:
+                session['answers'] = {}
+            session['answers'][str(question_id)] = answer
+
+            # Przejdź do następnego pytania, jeśli istnieje
+            if question_id < total_questions:
+                return redirect(url_for('single_question', question_id=question_id + 1))
             else:
-                answers.append({'question_id': question.question_id, 'score': 0})
+                # Jeśli ostatnie pytanie, zakończ quiz
+                return redirect(url_for('quiz_results'))
+    
+    # Pobierz odpowiedzi z sesji
+    answers = session.get('answers', {})
+    
+    return render_template('quiz.html', question=question, question_id=question_id, total_questions=total_questions, answers=answers)
 
-        # Zapisz wynik użytkownika w bazie danych
-        result = Result(user_id=current_user.user_id, axis_x=total_score_x, axis_y=total_score_y)
-        db.session.add(result)
-        db.session.commit()
-
-        return redirect(url_for('results'))
-    else:
-        questions = Question.query.all()
-        return render_template('quiz.html', questions=questions)
 
 # Wyświetlenie wyników
-@app.route('/results')
+@app.route('/result', methods=['GET', 'POST'])
 @login_required
-def results():
-    result = Result.query.filter_by(user_id=current_user.user_id).order_by(Result.result_id.desc()).first()
-    if result:
-        recommended_hobbies = vector_search(result.axis_x, result.axis_y, top_n=5)
-        return render_template('result.html', result=result, recommended_hobbies=recommended_hobbies)
-    else:
-        flash('Nie znaleziono wyników. Wykonaj quiz.')
-        return redirect(url_for('quiz'))
+def quiz_results():
+    """
+    Zapisuje wyniki quizu i przekierowuje do strony wyników.
+    """
+    answers = session.get('answers', {})
+    total_score_x = 0
+    total_score_y = 0
+
+    for question_id, answer in answers.items():
+        question = Question.query.get(int(question_id))
+        score = answer_values.get(answer, 0)
+        if question.axis == 'X':
+            total_score_x += score
+        elif question.axis == 'Y':
+            total_score_y += score
+
+    # Zapisz wynik użytkownika w bazie danych
+    result = Result(user_id=current_user.user_id, axis_x=total_score_x, axis_y=total_score_y)
+    db.session.add(result)
+    db.session.commit()
+
+    # Wyczyść odpowiedzi z sesji
+    session.pop('answers', None)
+    
+    return redirect(url_for('results'))
+
     
 
 @app.route('/hobby/<name>')
