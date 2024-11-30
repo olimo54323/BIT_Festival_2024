@@ -137,3 +137,19 @@ INSERT INTO questions (question_id, question, axis) VALUES (37, 'Czy wolisz szki
 INSERT INTO questions (question_id, question, axis) VALUES (38, 'Czy wolisz samotne podróże czy zorganizowane wycieczki grupowe?', 'X');
 INSERT INTO questions (question_id, question, axis) VALUES (39, 'Czy wolisz pisać poezję czy trenować boks?', 'Y');
 INSERT INTO questions (question_id, question, axis) VALUES (40, 'Czy cenisz bardziej swoje osiągnięcia czy wspólny sukces zespołu?', 'X');
+
+-- @block
+TRUNCATE TABLE hobbys;
+
+-- @block
+INSERT INTO hobbys (hobby_id, hobby, axis_x, axis_y, category_id, description) VALUES 
+(1, 'Pisanie', -8, -10, 1, 'Pisanie to twórcze hobby, które pozwala na ekspresję myśli.'),
+(2, 'Fotografia', -6, -8, 1, 'Fotografia to sztuka uchwycenia pięknych chwil.'),
+(3, 'Malowanie', -9, -9, 1, 'Malowanie rozwija kreatywność i wyobraźnię.'),
+(4, 'Gra w piłkę nożną', 10, 10, 2, 'Piłka nożna to sport drużynowy pełen emocji.'),
+(5, 'Wspinaczka', 6, 9, 2, 'Wspinaczka to wyzwanie fizyczne i mentalne.'),
+(6, 'Szachy', -7, -2, 3, 'Szachy to gra strategiczna rozwijająca myślenie.'),
+(7, 'Gry planszowe', -5, -1, 3, 'Gry planszowe to świetny sposób na spędzenie czasu z rodziną.'),
+(8, 'Pływanie', 4, 7, 2, 'Pływanie to doskonały trening dla całego ciała.'),
+(9, 'Wędkowanie', -10, 2, 4, 'Wędkowanie to relaksujące hobby na świeżym powietrzu.'),
+(10, 'Programowanie', -5, -6, 5, 'Programowanie to tworzenie aplikacji i systemów.');

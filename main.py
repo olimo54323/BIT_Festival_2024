@@ -181,13 +181,15 @@ def vector_search(total_score_x, total_score_y, top_n=5):
         distance = sqrt((hobby.axis_x - total_score_x) ** 2 + 
                         (hobby.axis_y - total_score_y) ** 2)
         results.append({
-            "hobby_id": hobby.hobby_id,
             "hobby": hobby.hobby,
+            "hobby_id": hobby.hobby_id,
+            "description": hobby.description,
             "distance": distance
         })
 
     results.sort(key=lambda x: x["distance"])
     return results[:top_n]
+
 
 
 if __name__ == '__main__':
