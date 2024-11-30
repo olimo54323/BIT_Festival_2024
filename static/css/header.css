@@ -1,0 +1,63 @@
+/* Stylizacja headera */
+header {
+    background-color: #2e8b57;
+    color: #fffff0;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+header .logo-container {
+    display: flex;
+    align-items: center;
+}
+
+header .logo {
+    max-height: 50px;
+}
+
+header nav {
+    display: flex;
+    align-items: center;
+}
+
+header ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 15px;
+}
+
+header ul li {
+    display: inline;
+}
+
+header ul li a {
+    color: #fffff0;
+    text-decoration: none;
+    padding: 5px 10px;
+}
+
+header ul li a:hover {
+    background-color: #2e8b57;
+    border-radius: 5px;
+}
+
+header .login-container {
+    display: flex;
+    align-items: center;
+}
+
+header .login-container a {
+    display: inline-block;
+    text-decoration: none;
+}
+
+header .login-icon {
+    max-height: 40px;
+    width: auto;
+    cursor: pointer;
+    margin-left: 10px;
+}

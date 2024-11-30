@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Odkryj Swoje Hobby</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/header.css') }}">
 </head>
 <body>
     <!-- Header z logo po lewej i nawigacją po prawej -->
@@ -29,15 +30,7 @@
     
     <!-- Zawartość strony -->
     <div class="content">
-        <h1>Witaj w aplikacji "Odkryj Swoje Hobby"</h1>
-        {% if current_user.is_authenticated %}
-            <p>Zalogowany jako: {{ current_user.username }}</p>
-            <a href="{{ url_for('quiz') }}">Przejdź do quizu</a><br>
-            <a href="{{ url_for('logout') }}">Wyloguj się</a>
-        {% else %}
-            <a href="{{ url_for('login') }}">Zaloguj się</a><br>
-            <a href="{{ url_for('signup') }}">Zarejestruj się</a>
-        {% endif %}
+        
     </div>
 </body>
 </html>
