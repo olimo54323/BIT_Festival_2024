@@ -17,7 +17,7 @@ body {
     justify-content: flex-start;
     align-items: center;
     min-height: 100vh;
-    font-family: Arial, sans-serif;
+    font-family: Parkinsans, Light300; /* Dodano czcionkę */
 }
 
 header {

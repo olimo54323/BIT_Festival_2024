@@ -6,7 +6,7 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: Parkinsans, Light300; /* Dodano czcionkę */
     background-color: #fffff0;
     color: #2e8b57;
     line-height: 1.6;

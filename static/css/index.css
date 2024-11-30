@@ -17,7 +17,7 @@ body {
     justify-content: flex-start;  /* Upewniamy się, że strona zaczyna się od góry */
     align-items: center;
     min-height: 100vh;
-    font-family: Arial, sans-serif; /* Dodano czcionkę */
+    font-family: Parkinsans, Light300; /* Dodano czcionkę */
 }
 
 /* Stylizacja headera */
@@ -222,6 +222,8 @@ footer {
     bottom: 0;
     width: 100%;
 }
+
+
 
 /* Responsywność dla urządzeń mobilnych */
 @media (max-width: 768px) {
