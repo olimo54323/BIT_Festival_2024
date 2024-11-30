@@ -92,31 +92,48 @@ h1 {
     margin: 20px 0;
 }
 
-/* Kategoria */
-.category {
-    background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    margin: 20px auto;
-    padding: 20px;
+/* Kategoria jako panel */
+.accordion {
+    background-color: #3498db;
+    color: white;
+    cursor: pointer;
+    padding: 15px;
+    text-align: left;
+    border: none;
+    outline: none;
+    font-size: 18px;
     width: 80%;
     max-width: 800px;
+    margin: 10px auto;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
 }
 
-.category h2 {
-    font-size: 1.8em;
-    color: #3498db;
-    margin-bottom: 10px;
+.accordion:hover {
+    background-color: #2980b9;
 }
 
-/* Lista hobby */
-.hobby-list {
+.accordion.active {
+    background-color: #1f6ea5;
+}
+
+.panel {
+    background-color: #ffffff;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    padding-left: 15px;
+    border-radius: 0 0 5px 5px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.panel ul {
     list-style-type: none;
-    padding: 0;
+    padding: 10px 0;
     margin: 0;
 }
 
-.hobby-list li {
+.panel ul li {
     padding: 8px;
     margin: 5px 0;
     background-color: #ecf0f1;
@@ -124,24 +141,25 @@ h1 {
     transition: background-color 0.3s ease;
 }
 
-.hobby-list li:hover {
+.panel ul li:hover {
     background-color: #3498db;
     color: #fff;
 }
 
-.hobby-list li a {
+.panel ul li a {
     text-decoration: none;
     color: #2c3e50;
     font-weight: bold;
 }
 
-.hobby-list li a:hover {
+.panel ul li a:hover {
     color: #ffffff;
 }
 
-/* Przycisk powrotu */
-div a button {
+/* Przycisk czatu */
+.panel .chat-button {
     display: inline-block;
+    margin-top: 15px;
     padding: 10px 20px;
     background-color: #3498db;
     color: white;
@@ -150,11 +168,10 @@ div a button {
     font-size: 1em;
     cursor: pointer;
     text-align: center;
-    margin-top: 30px;
     text-decoration: none;
 }
 
-div a button:hover {
+.panel .chat-button:hover {
     background-color: #2980b9;
 }
 
@@ -178,7 +195,7 @@ div a button:hover {
         font-size: 20px;
     }
 
-    .category {
+    .accordion {
         width: 90%;
     }
 }
