@@ -31,10 +31,25 @@ login_manager.init_app(app)
 def load_user(user_id):
     return User.query.get(int(user_id))
 
+# Mapa odpowiedzi na wartości punktowe
+answer_values = {
+    "zdecydowanie_tak": 2,
+    "chyba_tak": 1,
+    "nie_wiem": 0,
+    "chyba_nie": -1,
+    "zdecydowanie_nie": -2
+}
+
 # Strona główna
 @app.route('/')
 def index():
     return render_template("index.html")
+
+# Strona startowa po zalogowaniu
+@app.route('/start')
+@login_required
+def start():
+    return render_template("start.html")
 
 # Rejestracja
 @app.route('/signup', methods=['GET', 'POST'])
@@ -64,7 +79,7 @@ def signup():
         db.session.commit()
 
         login_user(new_user)
-        return redirect(url_for('quiz'))
+        return redirect(url_for('start'))
 
     return render_template('signup.html')
 
@@ -82,7 +97,7 @@ def login():
 
         if user and check_password_hash(user.password, password):
             login_user(user)
-            return redirect(url_for('quiz'))
+            return redirect(url_for('start'))
         else:
             flash('Nieprawidłowa nazwa użytkownika/adres e-mail lub hasło.')
             return redirect(url_for('login'))
@@ -96,23 +111,10 @@ def logout():
     logout_user()
     return redirect(url_for('index'))
 
-# Mapa odpowiedzi na wartości punktowe
-answer_values = {
-    "zdecydowanie_tak": 2,
-    "chyba_tak": 1,
-    "nie_wiem": 0,
-    "chyba_nie": -1,
-    "zdecydowanie_nie": -2
-}
-
 # Formularz z pytaniami (quiz)
 @app.route('/quiz', methods=['GET', 'POST'])
 @login_required
 def quiz():
-    if current_user.is_admin:
-        flash('Administratorzy nie mają dostępu do quizu.')
-        return redirect(url_for('index'))
-
     if request.method == 'POST':
         total_score_x = 0
         total_score_y = 0
@@ -135,13 +137,22 @@ def quiz():
         db.session.add(result)
         db.session.commit()
 
-        # Rekomendacja hobby na podstawie wyniku
-        recommended_hobbies = vector_search(total_score_x, total_score_y, top_n=5)
-
-        return render_template('result.html', total_score_x=total_score_x, total_score_y=total_score_y, recommended_hobbies=recommended_hobbies)
+        return redirect(url_for('results'))
     else:
         questions = Question.query.all()
         return render_template('quiz.html', questions=questions)
+
+# Wyświetlenie wyników
+@app.route('/results')
+@login_required
+def results():
+    result = Result.query.filter_by(user_id=current_user.user_id).order_by(Result.result_id.desc()).first()
+    if result:
+        recommended_hobbies = vector_search(result.axis_x, result.axis_y, top_n=5)
+        return render_template('result.html', result=result, recommended_hobbies=recommended_hobbies)
+    else:
+        flash('Nie znaleziono wyników. Wykonaj quiz.')
+        return redirect(url_for('quiz'))
 
 # Funkcja wyszukiwania wektorowego
 def vector_search(total_score_x, total_score_y, top_n=5):

@@ -27,7 +27,8 @@ CREATE TABLE results(
 CREATE TABLE hobbys(
     hobby_id INT PRIMARY KEY AUTO_INCREMENT,
     hobby VARCHAR(255) NOT NULL UNIQUE,
-    
+    axis_x INT NOT NULL,
+    axis_y INT NOT NULL,
     category_id INT NOT NULL,
     FOREIGN KEY (category_id) REFERENCES categories(category_id) ON DELETE CASCADE
 );
@@ -67,6 +68,10 @@ DROP TABLE users;
 
 -- @block
 DROP table results;
+
+-- @block
+DROP table hobbys;
+
 
 -- @block
 SELECT * FROM hobbys

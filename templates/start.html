@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Start</title>
+</head>
+<body>
+    <h1>Witaj, {{ current_user.name }}!</h1>
+    <p>Co chciałbyś zrobić?</p>
+    <a href="{{ url_for('quiz') }}"><button>Rozpocznij quiz</button></a>
+    <a href="{{ url_for('results') }}"><button>Pokaż wyniki</button></a>
+</body>
+</html>

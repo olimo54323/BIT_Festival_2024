@@ -2,19 +2,18 @@
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <title>Twoje Wyniki</title>
+    <title>Wyniki</title>
 </head>
 <body>
-    <h1>Twoje Wyniki</h1>
-    <p>Twój wynik na osi Samodzielny-Grupowy (X): {{ total_score_x }}</p>
-    <p>Twój wynik na osi Artystyczny-Sportowy (Y): {{ total_score_y }}</p>
-    <h2>Proponowane hobby:</h2>
+    <h1>Twoje wyniki</h1>
+    <p>Oś X: {{ result.axis_x }}</p>
+    <p>Oś Y: {{ result.axis_y }}</p>
+    <h2>Rekomendowane hobby:</h2>
     <ul>
         {% for hobby in recommended_hobbies %}
-        <li>{{ hobby }}</li>
+            <li>{{ hobby['hobby'] }} (Dystans: {{ hobby['distance'] | round(2) }})</li>
         {% endfor %}
     </ul>
-    <a href="{{ url_for('quiz') }}">Wypełnij ponownie quiz</a><br>
-    <a href="{{ url_for('logout') }}">Wyloguj się</a>
+    <a href="{{ url_for('quiz') }}"><button>Wypełnij quiz ponownie</button></a>
 </body>
 </html>
