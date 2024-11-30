@@ -178,9 +178,8 @@ CREATE TABLE room_participants (
 
 -- @block
 INSERT INTO chatrooms (room_id, name, created_at, created_by)
-VALUES (
-    "5",
-    "Technologiczne",
-    "1970-01-01 10:10:10 ",
-    "1"
-  );
+VALUES ("5", "Technologiczne", "1970-01-01 10:10:10 ", "1" ),
+       ("1", "Artystyczne", "1970-01-01 10:10:10 ", "1" ),
+       ("2", "Sportowe", "1970-01-01 10:10:10 ", "1" ),
+       ("3", "Umysłowe", "1970-01-01 10:10:10 ", "1" ),
+       ("4", "Zewnętrzne", "1970-01-01 10:10:10 ", "1" );
