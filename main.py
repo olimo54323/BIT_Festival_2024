@@ -111,6 +111,14 @@ def logout():
     logout_user()
     return redirect(url_for('index'))
 
+app.route('/about')  # Dodaj trasę /about
+def about():
+    return render_template('about.html')  # Tu wstaw ścieżkę do szablonu 'about.html'
+
+@app.route('/categories')  # Nowa trasa dla kategorii
+def categories():
+    return render_template('categories.html')  # Wskazuje na szablon kategorii
+
 # Formularz z pytaniami (quiz)
 @app.route('/quiz', methods=['GET', 'POST'])
 @login_required
