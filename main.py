@@ -111,7 +111,7 @@ def logout():
     logout_user()
     return redirect(url_for('index'))
 
-app.route('/about')  # Dodaj trasę /about
+@app.route('/about')  # Dodaj trasę /about
 def about():
     return render_template('about.html')  # Tu wstaw ścieżkę do szablonu 'about.html'
 
