@@ -14,10 +14,6 @@
         </div>
         <nav>
             <ul>
-                <li><h1>Odkryj Swoje Hobby</h1></li>
-                <li><p>Pytanie {{ question_id }} z {{ total_questions }}</p></li>
-            </ul>
-            <ul>
                 <li><a href="{{ url_for('categories') }}">Kategorie</a></li>
                 <li><a href="{{ url_for('single_question', question_id=1) }}">Quiz</a></li>
                 <li><a href="{{ url_for('about') }}">O aplikacji</a></li>
@@ -29,6 +25,13 @@
             </a>
         </div>
     </header>
+<nav>
+    <ul>
+        <li><h1>Odkryj Swoje Hobby</h1></li>
+        <li><p>Pytanie {{ question_id }} z {{ total_questions }}</p></li>
+    </ul>
+</nav>
+
 
     <div class="container">
         <form method="post">

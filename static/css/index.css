@@ -32,13 +32,34 @@ header {
 }
 
 header .logo-container {
-    display: flex;
-    align-items: center;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 8px;
+    padding: 5px;
+    transition: background-color 0.3s, opacity 0.3s;
+    opacity: 0.9;
 }
 
 header .logo {
     max-height: 50px;
+    width: auto;
+    cursor: pointer;
+    opacity: 0.8;
+    transition: opacity 0.3s;
 }
+
+header .logo-container:hover {
+    background-color: rgba(255, 255, 255, 1);
+    opacity: 1;
+}
+
+header .logo:hover {
+    opacity: 1;
+}
+
+header .logo-container:active {
+    transform: scale(0.95); /* Delikatne zmniejszenie przy kliknięciu */
+}
+
 
 header nav {
     display: flex;
@@ -83,7 +104,18 @@ header .login-icon {
     width: auto;
     cursor: pointer;
     margin-left: 10px;
+    opacity: 0.8;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    padding: 5px;
+    transition: opacity 0.3s, background-color 0.3s;
 }
+
+header .login-icon:hover {
+    opacity: 1;
+    background-color: rgba(255, 255, 255, 1);
+}
+
 
 /* Główna treść */
 main {
