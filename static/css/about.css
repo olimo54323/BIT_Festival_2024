@@ -7,8 +7,8 @@
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #f9f9f9;
-    color: #333;
+    background-color: #fffff0;
+    color: #2e8b57;
     line-height: 1.6;
     display: flex;
     flex-direction: column;
@@ -17,7 +17,7 @@ body {
 
 /* Header */
 header {
-    background-color: #333;
+    background-color: #2e8b57;
     color: white;
     padding: 10px 20px;
     display: flex;
@@ -53,13 +53,13 @@ header ul li {
 }
 
 header ul li a {
-    color: white;
+    color: #fffff0;
     text-decoration: none;
     padding: 5px 10px;
 }
 
 header ul li a:hover {
-    background-color: #555;
+    background-color: #2e8b57;
     border-radius: 5px;
 }
 
@@ -78,7 +78,7 @@ header .login-icon {
 /* Treść strony */
 .container {
     max-width: 800px;
-    background: white;
+    background: #fffff0;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     margin: 30px 20px;
@@ -87,7 +87,7 @@ header .login-icon {
 }
 
 h2 {
-    color: #007bff;
+    color: #2e8b57;
     font-size: 1.8rem;
     margin-bottom: 15px;
 }
@@ -95,7 +95,7 @@ h2 {
 p {
     margin-bottom: 15px;
     font-size: 1rem;
-    color: #555;
+    color: #2e8b57;
 }
 
 ul, ol {
@@ -108,7 +108,7 @@ li {
 }
 
 a {
-    color: #007bff;
+    color: #2e8b57;
     text-decoration: none;
 }
 
