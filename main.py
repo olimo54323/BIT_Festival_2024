@@ -117,10 +117,10 @@ def single_question(question_id):
     """
     Wyświetla jedno pytanie quizu i obsługuje odpowiedzi.
     """
-    questions = Question.query.all()
-    question = Question.query.get_or_404(question_id)
-    total_questions = len(questions)
-    
+    questions = Question.query.all()  # Pobierz wszystkie pytania
+    question = Question.query.get_or_404(question_id)  # Pobierz aktualne pytanie
+    total_questions = len(questions)  # Liczba wszystkich pytań
+
     # Obsługa POST
     if request.method == 'POST':
         answer = request.form.get(f'question_{question_id}')
@@ -134,12 +134,13 @@ def single_question(question_id):
             if question_id < total_questions:
                 return redirect(url_for('single_question', question_id=question_id + 1))
             else:
-                # Jeśli ostatnie pytanie, zakończ quiz
+                # Jeśli to ostatnie pytanie, przekieruj do wyników
                 return redirect(url_for('quiz_results'))
-    
+
     # Pobierz odpowiedzi z sesji
     answers = session.get('answers', {})
-    
+
+    # Renderuj aktualne pytanie
     return render_template('quiz.html', question=question, question_id=question_id, total_questions=total_questions, answers=answers)
 
 
@@ -169,14 +170,32 @@ def quiz_results():
 
     # Wyczyść odpowiedzi z sesji
     session.pop('answers', None)
-    
-    return redirect(url_for('quiz_results'))
 
+    # Przekierowanie do widoku wyników
+    return redirect(url_for('results'))
+
+
+@app.route('/results')
+@login_required
+def results():
+    """
+    Wyświetla wyniki użytkownika i rekomendowane hobby.
+    """
+    result = Result.query.filter_by(user_id=current_user.user_id).order_by(Result.result_id.desc()).first()
+    if result:
+        recommended_hobbies = vector_search(result.axis_x, result.axis_y, top_n=5)
+        return render_template('result.html', result=result, recommended_hobbies=recommended_hobbies)
+    else:
+        flash('Nie znaleziono wyników. Wykonaj quiz.')
+        return redirect(url_for('single_question', question_id=1))
 
 
 
 @app.route('/hobby/<name>')
 def hobby_detail(name):
+    """
+    Wyświetla szczegóły wybranego hobby na podstawie jego nazwy.
+    """
     hobby = Hobby.query.filter_by(hobby=name).first_or_404()
     return render_template('hobby.html', hobby=hobby)
 
