@@ -38,7 +38,17 @@ CREATE TABLE categories(
 );
 
 -- @block
-SELECT * FROM users;
+INSERT into users ( user_id,name,email,password,is_admin )
+VALUES (
+    "1",
+    "admin",
+    "admin@admin",
+    "admin",
+    "1"
+);
+
+-- @block
+SELECT * FROM users
 
 -- @block
 select * from questions;
