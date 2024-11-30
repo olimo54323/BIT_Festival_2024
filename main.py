@@ -115,78 +115,92 @@ def categories():
 @login_required
 def single_question(question_id):
     """
-    Wyświetla jedno pytanie quizu i obsługuje odpowiedzi.
+    Displays one quiz question and handles answers.
     """
-    questions = Question.query.all()  # Pobierz wszystkie pytania
-    question = Question.query.get_or_404(question_id)  # Pobierz aktualne pytanie
-    total_questions = len(questions)  # Liczba wszystkich pytań
+    questions = Question.query.all()
+    question = Question.query.get_or_404(question_id)
+    total_questions = len(questions)
 
-    # Obsługa POST
     if request.method == 'POST':
         answer = request.form.get(f'question_{question_id}')
         if answer:
-            # Zapisz odpowiedź w sesji
+            # Initialize answers dictionary if it doesn't exist
             if 'answers' not in session:
                 session['answers'] = {}
-            session['answers'][str(question_id)] = answer
+            
+            # Save the answer and calculate its score
+            session['answers'][str(question_id)] = {
+                'answer': answer,
+                'axis': question.axis,
+                'score': answer_values[answer]
+            }
+            
+            # Make sure to mark session as modified
+            session.modified = True
 
-            # Przejdź do następnego pytania, jeśli istnieje
             if question_id < total_questions:
                 return redirect(url_for('single_question', question_id=question_id + 1))
             else:
-                # Jeśli to ostatnie pytanie, przekieruj do wyników
                 return redirect(url_for('quiz_results'))
 
-    # Pobierz odpowiedzi z sesji
-    answers = session.get('answers', {})
+    return render_template('quiz.html', 
+                         question=question, 
+                         question_id=question_id, 
+                         total_questions=total_questions, 
+                         answers=session.get('answers', {}))
 
-    # Renderuj aktualne pytanie
-    return render_template('quiz.html', question=question, question_id=question_id, total_questions=total_questions, answers=answers)
-
-
-# Wyświetlenie wyników
 @app.route('/result', methods=['GET', 'POST'])
 @login_required
 def quiz_results():
     """
-    Zapisuje wyniki quizu i przekierowuje do strony wyników.
+    Calculates final scores and saves quiz results.
     """
     answers = session.get('answers', {})
+    
+    # Initialize scores
     total_score_x = 0
     total_score_y = 0
-
-    for question_id, answer in answers.items():
-        question = Question.query.get(int(question_id))
-        score = answer_values.get(answer, 0)
-        if question.axis == 'X':
+    
+    # Calculate scores for all answers
+    for question_id, answer_data in answers.items():
+        score = answer_data['score']
+        axis = answer_data['axis']
+        
+        if axis == 'X':
             total_score_x += score
-        elif question.axis == 'Y':
+        elif axis == 'Y':
             total_score_y += score
-
-    # Zapisz wynik użytkownika w bazie danych
-    result = Result(user_id=current_user.user_id, axis_x=total_score_x, axis_y=total_score_y)
+    
+    # Debug output
+    print(f"Answers data: {answers}")
+    print(f"Final scores - X: {total_score_x}, Y: {total_score_y}")
+    
+    # Save result to database
+    result = Result(
+        user_id=current_user.user_id,
+        axis_x=total_score_x,
+        axis_y=total_score_y
+    )
     db.session.add(result)
     db.session.commit()
 
-    # Wyczyść odpowiedzi z sesji
+    # Clear the session answers
     session.pop('answers', None)
 
-    # Przekierowanie do widoku wyników
     return redirect(url_for('results'))
-
 
 @app.route('/results')
 @login_required
 def results():
     """
-    Wyświetla wyniki użytkownika i rekomendowane hobby.
+    Displays user results and recommended hobbies.
     """
     result = Result.query.filter_by(user_id=current_user.user_id).order_by(Result.result_id.desc()).first()
     if result:
         recommended_hobbies = vector_search(result.axis_x, result.axis_y, top_n=5)
         return render_template('result.html', result=result, recommended_hobbies=recommended_hobbies)
     else:
-        flash('Nie znaleziono wyników. Wykonaj quiz.')
+        flash('No results found. Please take the quiz.')
         return redirect(url_for('single_question', question_id=1))
 
 
