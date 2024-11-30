@@ -3,10 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <title>Kategorie i Hobby</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/header.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/categories.css') }}">
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const accordions = document.querySelectorAll(".accordion");
+            accordions.forEach(acc => {
+                acc.addEventListener("click", function () {
+                    this.classList.toggle("active");
+                    const panel = this.nextElementSibling;
+                    if (panel.style.maxHeight) {
+                        panel.style.maxHeight = null;
+                    } else {
+                        panel.style.maxHeight = panel.scrollHeight + "px";
+                    }
+                });
+            });
+        });
+    </script>
 </head>
-
 <body>
     <header>
         <div class="logo-container">
@@ -29,27 +43,17 @@
     </header>
     <h1>Kategorie i Hobby</h1>
     {% for category in categories %}
-    <div class="category">
-        <h2>{{ category.category }}</h2>
-        <ul class="hobby-list">
+    <button class="accordion">{{ category.category }}</button>
+    <div class="panel">
+        <ul>
             {% for hobby in category.hobbies %}
             <li>
                 <a href="{{ url_for('hobby_detail', name=hobby.hobby) }}">{{ hobby.hobby }}</a>
             </li>
             {% endfor %}
-            <a href="{{ url_for('chat_room', room_id=category.category_id) }}" 
-            class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded">
-             Dołącz do czatu
-         </a>
-        </ul>       
+        </ul>
+        <a href="{{ url_for('chat_room', room_id=category.category_id) }}" class="chat-button">Dołącz do czatu</a>
     </div>
     {% endfor %}
-    
-    <!-- Przycisk powrotu do strony głównej -->
-    <div>
-        <a href="{{ url_for('index') }}">
-            <button>Powrót do strony głównej</button>
-        </a>
-    </div>
 </body>
 </html>

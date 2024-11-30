@@ -6,17 +6,30 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/quiz.css') }}">
 </head>
 <body>
-    <!-- Nawigacja -->
-    <nav>
-        <ul>
-            <li><h1>Odkryj Swoje Hobby</h1></li>
-            <li>
-                <p>Pytanie {{ question_id }} z {{ total_questions }}</p>
-            </li>
-        </ul>
-    </nav>
+    <header>
+        <div class="logo-container">
+            <a href="{{ url_for('index') }}">
+                <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo" class="logo">
+            </a>
+        </div>
+        <nav>
+            <ul>
+                <li><h1>Odkryj Swoje Hobby</h1></li>
+                <li><p>Pytanie {{ question_id }} z {{ total_questions }}</p></li>
+            </ul>
+            <ul>
+                <li><a href="{{ url_for('categories') }}">Kategorie</a></li>
+                <li><a href="{{ url_for('single_question', question_id=1) }}">Quiz</a></li>
+                <li><a href="{{ url_for('about') }}">O aplikacji</a></li>
+            </ul>
+        </nav>
+        <div class="login-container">
+            <a href="{{ url_for('login') }}">
+                <img src="{{ url_for('static', filename='images/login.webp') }}" alt="Zaloguj się" class="login-icon">
+            </a>
+        </div>
+    </header>
 
-    <!-- Formularz pytania -->
     <div class="container">
         <form method="post">
             <div class="question">
@@ -51,6 +64,8 @@
                 <input type="submit" value="Zatwierdź i przejdź dalej">
             </div>
         </form>
+
+        
     </div>
 </body>
 </html>
