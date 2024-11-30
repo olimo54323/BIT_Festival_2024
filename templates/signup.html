@@ -11,7 +11,23 @@
 <body>
     <!-- Nagłówek -->
     <header>
-        <h1>Rejestracja</h1>
+        <div class="logo-container">
+            <a href="{{ url_for('index') }}">
+                <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo" class="logo">
+            </a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('categories') }}">Kategorie</a></li>
+                <li><a href="{{ url_for('single_question', question_id=1) }}">Quiz</a></li>
+                <li><a href="{{ url_for('about') }}">O aplikacji</a></li>
+            </ul>
+        </nav>
+        <div class="login-container">
+            <a href="{{ url_for('login') }}">
+                <img src="{{ url_for('static', filename='images/login.webp') }}" alt="Zaloguj się" class="login-icon">
+            </a>
+        </div>
     </header>
 
     <!-- Formularz rejestracji -->
