@@ -45,12 +45,6 @@ answer_values = {
 def index():
     return render_template("index.html")
 
-# Strona startowa po zalogowaniu
-@app.route('/start')
-@login_required
-def start():
-    return render_template("start.html")
-
 # Rejestracja
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
@@ -79,7 +73,7 @@ def signup():
         db.session.commit()
 
         login_user(new_user)
-        return redirect(url_for('start'))
+        return redirect(url_for('index'))
 
     return render_template('signup.html')
 
@@ -97,7 +91,7 @@ def login():
 
         if user and check_password_hash(user.password, password):
             login_user(user)
-            return redirect(url_for('start'))
+            return redirect(url_for('index'))
         else:
             flash('Nieprawidłowa nazwa użytkownika/adres e-mail lub hasło.')
             return redirect(url_for('login'))

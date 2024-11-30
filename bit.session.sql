@@ -58,7 +58,7 @@ VALUES (
 );
 
 -- @block
-select * from questions;
+select * from results;
 
 -- @block
 SELECT * FROM hobbys

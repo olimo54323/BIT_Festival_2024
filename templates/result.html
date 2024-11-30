@@ -11,7 +11,7 @@
     <h2>Rekomendowane hobby:</h2>
     <ul>
         {% for hobby in recommended_hobbies %}
-            <li>{{ hobby['hobby'] }} (Dystans: {{ hobby['distance'] | round(2) }})</li>
+            <li>{{ hobby['hobby'] }} </li>
         {% endfor %}
     </ul>
     <a href="{{ url_for('quiz') }}"><button>Wypełnij quiz ponownie</button></a>
