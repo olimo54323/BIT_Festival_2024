@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Rejestracja</title>
+</head>
+<body>
+    <h1>Rejestracja</h1>
+    <form method="post">
+        <label>Nazwa użytkownika:</label><br>
+        <input type="text" name="username" required><br>
+        <label>Hasło:</label><br>
+        <input type="password" name="password" required><br><br>
+        <input type="submit" value="Zarejestruj się">
+    </form>
+    <p>Masz już konto? <a href="{{ url_for('login') }}">Zaloguj się</a></p>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Quiz</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .question { margin-bottom: 20px; }
+        .options { margin-left: 20px; }
+    </style>
+</head>
+<body>
+    <h1>Odkryj Swoje Hobby</h1>
+    <form method="post">
+        {% for index, question in questions %}
+        <div class="question">
+            <p><strong>Pytanie {{ index + 1 }}:</strong> {{ question.text }}</p>
+            <div class="options">
+                <label>
+                    <input type="radio" name="question_{{ index }}" value="zdecydowanie_tak" required>
+                    Zdecydowanie tak
+                </label><br>
+                <label>
+                    <input type="radio" name="question_{{ index }}" value="chyba_tak">
+                    Chyba tak
+                </label><br>
+                <label>
+                    <input type="radio" name="question_{{ index }}" value="nie_wiem">
+                    Nie wiem
+                </label><br>
+                <label>
+                    <input type="radio" name="question_{{ index }}" value="chyba_nie">
+                    Chyba nie
+                </label><br>
+                <label>
+                    <input type="radio" name="question_{{ index }}" value="zdecydowanie_nie">
+                    Zdecydowanie nie
+                </label>
+            </div>
+        </div>
+        {% endfor %}
+        <input type="submit" value="Wyślij">
+    </form>
+</body>
+</html>

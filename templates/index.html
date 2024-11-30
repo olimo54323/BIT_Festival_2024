@@ -2,36 +2,17 @@
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Przykładowy Dokument HTML</title>
-    <link rel="stylesheet" href="style.css">
- 
+    <title>Odkryj Swoje Hobby</title>
 </head>
 <body>
-    <header>
-        <h1>Witamy na stronie!</h1>
-    </header>
-    <nav>
-        <a href="#section1">Sekcja 1</a>
-        <a href="#section2">Sekcja 2</a>
-        <a href="#section3">Sekcja 3</a>
-    </nav>
-    <main>
-        <section id="section1">
-            <h2>Sekcja 1</h2>
-            <p>To jest przykładowy tekst w pierwszej sekcji.</p>
-        </section>
-        <section id="section2">
-            <h2>Sekcja 2</h2>
-            <p>To jest przykładowy tekst w drugiej sekcji.</p>
-        </section>
-        <section id="section3">
-            <h2>Sekcja 3</h2>
-            <p>To jest przykładowy tekst w trzeciej sekcji.</p>
-        </section>
-    </main>
-    <footer>
-        <p>© 2024 Twoja Strona Internetowa</p>
-    </footer>
+    <h1>Witaj w aplikacji "Odkryj Swoje Hobby"</h1>
+    {% if current_user.is_authenticated %}
+        <p>Zalogowany jako: {{ current_user.username }}</p>
+        <a href="{{ url_for('quiz') }}">Przejdź do quizu</a><br>
+        <a href="{{ url_for('logout') }}">Wyloguj się</a>
+    {% else %}
+        <a href="{{ url_for('login') }}">Zaloguj się</a><br>
+        <a href="{{ url_for('signup') }}">Zarejestruj się</a>
+    {% endif %}
 </body>
 </html>
