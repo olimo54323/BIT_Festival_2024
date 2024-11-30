@@ -17,7 +17,7 @@ body {
     justify-content: flex-start;  /* Upewniamy się, że strona zaczyna się od góry */
     align-items: center;
     min-height: 100vh;
-    font-family: Arial, sans-serif; /* Dodano czcionkę */
+    font-family: Parkinsans, Light300; /* Dodano czcionkę */
 }
 
 /* Stylizacja headera */
@@ -39,7 +39,45 @@ header .logo-container {
 
 header .logo {
     max-height: 50px;
+}header {
+    background-color: #2e8b57;
+    color: #fffff0;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
 }
+
+header .logo-container {
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 8px;
+    padding: 5px;
+    transition: background-color 0.3s, opacity 0.3s;
+    opacity: 0.9;
+}
+
+header .logo {
+    max-height: 50px;
+    width: auto;
+    cursor: pointer;
+    opacity: 0.8;
+    transition: opacity 0.3s;
+}
+
+header .logo-container:hover {
+    background-color: rgba(255, 255, 255, 1);
+    opacity: 1;
+}
+
+header .logo:hover {
+    opacity: 1;
+}
+
+header .logo-container:active {
+    transform: scale(0.95); /* Delikatne zmniejszenie przy kliknięciu */
+}
+
 
 header nav {
     display: flex;
@@ -84,6 +122,16 @@ header .login-icon {
     width: auto;
     cursor: pointer;
     margin-left: 10px;
+    opacity: 0.8;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    padding: 5px;
+    transition: opacity 0.3s, background-color 0.3s;
+}
+
+header .login-icon:hover {
+    opacity: 1;
+    background-color: rgba(255, 255, 255, 1);
 }
 
 /* Główna treść */

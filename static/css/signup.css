@@ -17,6 +17,7 @@ body {
     justify-content: flex-start;  /* Upewniamy się, że strona zaczyna się od góry */
     align-items: center;
     min-height: 100vh;
+    font-family: Parkinsans, Light300; /* Dodano czcionkę */
 }
 
 

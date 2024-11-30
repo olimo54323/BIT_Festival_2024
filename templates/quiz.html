@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <title>Quiz</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/quiz.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Parkinsans:wght@300..800&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
@@ -13,10 +16,6 @@
             </a>
         </div>
         <nav>
-            <ul>
-                <li><h1>Odkryj Swoje Hobby</h1></li>
-                <li><p>Pytanie {{ question_id }} z {{ total_questions }}</p></li>
-            </ul>
             <ul>
                 <li><a href="{{ url_for('categories') }}">Kategorie</a></li>
                 <li><a href="{{ url_for('single_question', question_id=1) }}">Quiz</a></li>
@@ -29,6 +28,13 @@
             </a>
         </div>
     </header>
+<nav>
+    <ul>
+        <li><h1>Odkryj Swoje Hobby</h1></li>
+        <li><p>Pytanie {{ question_id }} z {{ total_questions }}</p></li>
+    </ul>
+</nav>
+
 
     <div class="container">
         <form method="post">
