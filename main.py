@@ -109,13 +109,9 @@ def categories():
     categories = Category.query.all()
     return render_template('categories.html', categories=categories)
 
-<<<<<<< HEAD
-@app.route('/quiz', methods=['GET', 'POST'])
-=======
 
 # Formularz z pytaniami (quiz)
 @app.route('/quiz/<int:question_id>', methods=['GET', 'POST'])
->>>>>>> a7c383499b5f36d9f4cba403d14e63ac1dd86acb
 @login_required
 def single_question(question_id):
     """
@@ -146,27 +142,6 @@ def single_question(question_id):
     
     return render_template('quiz.html', question=question, question_id=question_id, total_questions=total_questions, answers=answers)
 
-<<<<<<< HEAD
-        result = Result(user_id=current_user.user_id, axis_x=total_score_x, axis_y=total_score_y)
-        db.session.add(result)
-        db.session.commit()
-
-        return redirect(url_for('results'))
-    else:
-        questions = Question.query.all()
-        return render_template('quiz.html', questions=questions)
-
-@app.route('/results')
-@login_required
-def results():
-    result = Result.query.filter_by(user_id=current_user.user_id).order_by(Result.result_id.desc()).first()
-    if result:
-        recommended_hobbies = vector_search(result.axis_x, result.axis_y, top_n=5)
-        return render_template('result.html', result=result, recommended_hobbies=recommended_hobbies)
-    else:
-        flash('Nie znaleziono wyników. Wykonaj quiz.')
-        return redirect(url_for('quiz'))
-=======
 
 # Wyświetlenie wyników
 @app.route('/result', methods=['GET', 'POST'])
@@ -199,7 +174,6 @@ def quiz_results():
 
 
 
->>>>>>> a7c383499b5f36d9f4cba403d14e63ac1dd86acb
 
 @app.route('/hobby/<name>')
 def hobby_detail(name):
@@ -272,10 +246,7 @@ def vector_search(total_score_x, total_score_y, top_n=5):
     results.sort(key=lambda x: x["distance"])
     return results[:top_n]
 
-<<<<<<< HEAD
-=======
 
 
->>>>>>> a7c383499b5f36d9f4cba403d14e63ac1dd86acb
 if __name__ == '__main__':
     socketio.run(app, debug=True)
