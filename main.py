@@ -155,20 +155,34 @@ def results():
         return redirect(url_for('quiz'))
 
 # Funkcja wyszukiwania wektorowego
+# Funkcja wyszukiwania wektorowego
 def vector_search(total_score_x, total_score_y, top_n=5):
-    hobbies = Hobby.query.join(Category).all()
+    """
+    Find hobbies closest to the given coordinates using Euclidean distance.
+    
+    Parameters:
+    total_score_x (float): X-axis coordinate of the user's result
+    total_score_y (float): Y-axis coordinate of the user's result
+    top_n (int): Number of closest hobbies to return
+    
+    Returns:
+    list: List of dictionaries containing hobbies and their distances from the user's coordinates
+    """
+    # Query all hobbies directly
+    hobbies = Hobby.query.all()
     results = []
 
+    # Calculate distance for each hobby using its own coordinates
     for hobby in hobbies:
-        category = hobby.category
-        axis_x = category.axis_x
-        axis_y = category.axis_y
-        distance = sqrt((axis_x - total_score_x) ** 2 + (axis_y - total_score_y) ** 2)
+        # Use hobby's own coordinates instead of category coordinates
+        distance = sqrt((hobby.axis_x - total_score_x) ** 2 + 
+                       (hobby.axis_y - total_score_y) ** 2)
         results.append({
             "hobby": hobby.hobby,
             "distance": distance
         })
 
+    # Sort by distance and return top N results
     results.sort(key=lambda x: x["distance"])
     return results[:top_n]
 

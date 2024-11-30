@@ -61,25 +61,16 @@ VALUES (
 select * from questions;
 
 -- @block
-TRUNCATE TABLE users;
-
--- @block
-DROP TABLE users;
-
--- @block
-DROP table results;
-
--- @block
-DROP table hobbys;
-
--- @block
-TRUNCATE table questions;
-
--- @block
 SELECT * FROM hobbys
 
 -- @block
-DROP TABLE categories;
+SELECT * FROM categories
+
+-- @block
+SELECT * FROM questions
+
+-- @block
+DROP TABLE hobbys
 
 -- @block
 INSERT INTO categories (category_id, category) VALUES (1, 'Artystyczne');
