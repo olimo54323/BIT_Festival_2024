@@ -14,5 +14,5 @@ class User(UserMixin, db.Model):
 
     results = db.relationship('Result', backref='user', lazy=True)
 
-def get_id(self):
-    return str(self.user_id)
+    def get_id(self):
+        return str(self.user_id)
