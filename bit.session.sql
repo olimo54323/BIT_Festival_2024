@@ -36,3 +36,16 @@ CREATE TABLE categories(
     category_id INT PRIMARY KEY AUTO_INCREMENT,
     category VARCHAR(255) NOT NULL UNIQUE
 );
+
+-- @block
+INSERT into users ( user_id,name,email,password,is_admin )
+VALUES (
+    "1",
+    "admin",
+    "admin@admin",
+    "admin",
+    "1"
+);
+
+-- @block
+SELECT * FROM users
