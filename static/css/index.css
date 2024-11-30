@@ -7,16 +7,23 @@ header {
     background-color: #333;
     color: #fff;
     padding: 10px 20px;
-}
-
-header nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
+header .logo-container {
+    display: flex;
+    align-items: center;
+}
+
 header .logo {
     max-height: 50px;
+}
+
+header nav {
+    display: flex;
+    align-items: center;
 }
 
 header ul {
@@ -42,6 +49,25 @@ header ul li a:hover {
     border-radius: 5px;
 }
 
+/* Styl dla kontenera logowania */
+header .login-container {
+    display: flex;
+    align-items: center;
+}
+
+header .login-container a {
+    display: inline-block;
+    text-decoration: none;
+}
+
+header .login-icon {
+    max-height: 40px;
+    width: auto;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+/* Główna treść */
 main {
     padding: 20px;
 }
@@ -68,6 +94,7 @@ main a:hover {
     background-color: #218838;
 }
 
+/* Stopka */
 footer {
     background-color: #333;
     color: #fff;
