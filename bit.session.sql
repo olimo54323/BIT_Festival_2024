@@ -50,9 +50,9 @@ VALUES (
 -- @block
 INSERT into questions ( question_id,question,axis )
 VALUES (
-    "1",
-    "test",
-    "X"
+    "40",
+    "Czy wolisz udział w konkursach literackich czy sportowych?",
+    "Y"
 );
 
 -- @block
