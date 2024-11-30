@@ -177,7 +177,7 @@ def quiz_results():
     
     return redirect(url_for('results'))
 
-    
+
 
 @app.route('/hobby/<name>')
 def hobby_detail(name):
