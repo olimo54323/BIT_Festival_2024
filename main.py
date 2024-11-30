@@ -109,9 +109,11 @@ def logout():
 def about():
     return render_template('about.html')  # Tu wstaw ścieżkę do szablonu 'about.html'
 
-@app.route('/categories')  # Nowa trasa dla kategorii
+@app.route('/categories')
 def categories():
-    return render_template('categories.html')  # Wskazuje na szablon kategorii
+    categories = Category.query.all()  # Pobranie wszystkich kategorii z bazy danych
+    return render_template('categories.html', categories=categories)
+
 
 # Formularz z pytaniami (quiz)
 @app.route('/quiz', methods=['GET', 'POST'])

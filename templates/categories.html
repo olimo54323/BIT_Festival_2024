@@ -2,10 +2,26 @@
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <title>Kategorie</title>
+    <title>Kategorie i Hobby</title>
 </head>
 <body>
-    <h1>Lista kategorii</h1>
-    <p>Kategorie i hobby</p>
+    <h1>Kategorie i Hobby</h1>
+    {% for category in categories %}
+    <div class="category">
+        <h2>{{ category.category }}</h2>
+        <ul class="hobby-list">
+            {% for hobby in category.hobbies %}
+            <li>{{ hobby.hobby }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endfor %}
+    
+    <!-- Przycisk powrotu do strony głównej -->
+    <div>
+        <a href="{{ url_for('index') }}">
+            <button>Powrót do strony głównej</button>
+        </a>
+    </div>
 </body>
 </html>
