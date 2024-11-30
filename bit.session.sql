@@ -48,4 +48,12 @@ VALUES (
 );
 
 -- @block
-SELECT * FROM users
+INSERT into questions ( question_id,question,axis )
+VALUES (
+    "1",
+    "test",
+    "X"
+);
+
+-- @block
+SELECT * FROM questions
