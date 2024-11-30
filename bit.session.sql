@@ -20,15 +20,16 @@ CREATE TABLE results(
     user_id INT NOT NULL,
     axis_x INT NOT NULL,
     axis_y INT NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES users(user_id)
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
 );
 
 -- @block
 CREATE TABLE hobbys(
     hobby_id INT PRIMARY KEY AUTO_INCREMENT,
     hobby VARCHAR(255) NOT NULL UNIQUE,
+    
     category_id INT NOT NULL,
-    FOREIGN KEY (category_id) REFERENCES categories(category_id)
+    FOREIGN KEY (category_id) REFERENCES categories(category_id) ON DELETE CASCADE
 );
 
 -- @block
@@ -52,3 +53,15 @@ SELECT * FROM users
 
 -- @block
 select * from questions;
+
+-- @block
+TRUNCATE TABLE users;
+
+-- @block
+DROP TABLE users;
+
+-- @block
+DROP table results;
+
+-- @block
+SELECT * FROM hobbys
