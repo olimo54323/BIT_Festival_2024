@@ -16,7 +16,7 @@ app = Flask(__name__)
 
 # Konfiguracja aplikacji
 app.config['SECRET_KEY'] = 'your_secret_key'  # Ustaw swój klucz sekretu
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:mysql@localhost/bit'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root:mysql@localhost/bit'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # Inicjalizacja bazy danych
