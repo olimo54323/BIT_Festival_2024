@@ -41,19 +41,23 @@
             </a>
         </div>
     </header>
-    <h1>Kategorie i Hobby</h1>
-    {% for category in categories %}
-    <button class="accordion">{{ category.category }}</button>
-    <div class="panel">
-        <ul>
-            {% for hobby in category.hobbies %}
-            <li>
-                <a href="{{ url_for('hobby_detail', name=hobby.hobby) }}">{{ hobby.hobby }}</a>
-            </li>
-            {% endfor %}
-        </ul>
-        <a href="{{ url_for('chat_room', room_id=category.category_id) }}" class="chat-button">Dołącz do czatu</a>
+    <div class="categories-container">
+        {% for category in categories %}
+        <div class="category-item">
+            <div class="category-header">
+                {{ category.category }}
+            </div>
+            <div class="panel">
+                <ul>
+                    {% for hobby in category.hobbies %}
+                    <li>
+                        <a href="{{ url_for('hobby_detail', name=hobby.hobby) }}">{{ hobby.hobby }}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+                <a href="{{ url_for('chat_room', room_id=category.category_id) }}" class="chat-button">Dołącz do czatu</a>
+            </div>
+        </div>
+        {% endfor %}
     </div>
-    {% endfor %}
-</body>
 </html>

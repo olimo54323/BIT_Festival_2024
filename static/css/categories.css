@@ -90,47 +90,58 @@ h1 {
     font-size: 24px;
     color: #333;
     margin: 20px 0;
+    text-align: center;
+    width: 100%;
 }
 
-/* Kategoria jako panel */
-.accordion {
-    background-color: #3498db;
-    color: white;
+/* Container dla kategorii */
+.categories-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Kategoria jako kwadrat */
+.category-item {
+    aspect-ratio: 1;
+    background-color: #2e8b57;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
     cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.category-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Nagłówek kategorii */
+.category-header {
+    background-color: #2e8b57;
+    color: white;
     padding: 15px;
-    text-align: left;
-    border: none;
-    outline: none;
     font-size: 18px;
-    width: 80%;
-    max-width: 800px;
-    margin: 10px auto;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
+    text-align: center;
 }
 
-.accordion:hover {
-    background-color: #2980b9;
-}
-
-.accordion.active {
-    background-color: #1f6ea5;
-}
-
+/* Panel z hobby */
 .panel {
     background-color: #ffffff;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease-out;
-    padding-left: 15px;
-    border-radius: 0 0 5px 5px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    height: calc(100% - 50px);
+    overflow-y: auto;
 }
 
 .panel ul {
     list-style-type: none;
-    padding: 10px 0;
     margin: 0;
+    padding: 0;
 }
 
 .panel ul li {
@@ -142,26 +153,26 @@ h1 {
 }
 
 .panel ul li:hover {
-    background-color: #3498db;
-    color: #fff;
+    background-color: #2e8b57;
 }
 
 .panel ul li a {
     text-decoration: none;
     color: #2c3e50;
     font-weight: bold;
+    display: block;
 }
 
-.panel ul li a:hover {
+.panel ul li:hover a {
     color: #ffffff;
 }
 
 /* Przycisk czatu */
-.panel .chat-button {
-    display: inline-block;
-    margin-top: 15px;
+.chat-button {
+    display: block;
+    margin: 15px auto 0;
     padding: 10px 20px;
-    background-color: #3498db;
+    background-color: #2e8b57;
     color: white;
     border: none;
     border-radius: 5px;
@@ -169,13 +180,20 @@ h1 {
     cursor: pointer;
     text-align: center;
     text-decoration: none;
+    width: fit-content;
 }
 
-.panel .chat-button:hover {
-    background-color: #2980b9;
+.chat-button:hover {
+    background-color: #2fac65;
 }
 
 /* Responsywność */
+@media (max-width: 1024px) {
+    .categories-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
 @media (max-width: 768px) {
     header {
         flex-direction: column;
@@ -191,11 +209,11 @@ h1 {
         gap: 10px;
     }
 
-    h1 {
-        font-size: 20px;
+    .categories-container {
+        grid-template-columns: 1fr;
     }
 
-    .accordion {
-        width: 90%;
+    h1 {
+        font-size: 20px;
     }
 }
