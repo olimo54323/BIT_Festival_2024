@@ -3,16 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <title>Rejestracja</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/signup.css') }}">
 </head>
 <body>
-    <h1>Rejestracja</h1>
-    <form method="post">
-        <label>Nazwa użytkownika:</label><br>
-        <input type="text" name="username" required><br>
-        <label>Hasło:</label><br>
-        <input type="password" name="password" required><br><br>
-        <input type="submit" value="Zarejestruj się">
-    </form>
-    <p>Masz już konto? <a href="{{ url_for('login') }}">Zaloguj się</a></p>
+    <!-- Nawigacja z listą -->
+    <nav>
+        <ul>
+            <li><h1>Rejestracja</h1></li>
+        </ul>
+    </nav>
+
+    <!-- Formularz rejestracji -->
+    <div class="container">
+        <form method="post">
+            <label for="username">Nazwa użytkownika:</label><br>
+            <input type="text" id="username" name="username" required><br><br>
+            
+            <label for="password">Hasło:</label><br>
+            <input type="password" id="password" name="password" required><br><br>
+            
+            <label for="confirm-password">Potwierdź hasło:</label><br>
+            <input type="password" id="confirm-password" name="confirm-password" required><br><br>
+
+            <input type="submit" value="Zarejestruj się">
+        </form>
+        <p>Masz już konto? <a href="{{ url_for('login') }}">Zaloguj się</a></p>
+    </div>
 </body>
 </html>
