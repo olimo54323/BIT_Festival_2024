@@ -34,6 +34,11 @@ CREATE TABLE hobbys(
 );
 
 -- @block
+ALTER TABLE hobbys
+ADD COLUMN description TEXT;
+
+
+-- @block
 CREATE TABLE categories(
     category_id INT PRIMARY KEY AUTO_INCREMENT,
     category VARCHAR(255) NOT NULL UNIQUE
