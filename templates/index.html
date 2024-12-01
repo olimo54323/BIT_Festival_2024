@@ -25,11 +25,20 @@
             </ul>
         </nav>
         <div class="login-container">
-            <a href="{{ url_for('login') }}">
-                <img src="{{ url_for('static', filename='images/login.webp') }}" alt="Zaloguj się" class="login-icon">
-            </a>
+            {% if current_user.is_authenticated %}
+                <!-- Przycisk wylogowania -->
+                <a href="{{ url_for('logout') }}">
+                    <img src="{{ url_for('static', filename='images/logout.webp') }}" alt="Wyloguj się" class="login-icon">
+                </a>
+            {% else %}
+                <!-- Przycisk logowania -->
+                <a href="{{ url_for('login') }}">
+                    <img src="{{ url_for('static', filename='images/login.webp') }}" alt="Zaloguj się" class="login-icon">
+                </a>
+            {% endif %}
         </div>
     </header>
+    
     
     <!-- Zawartość strony -->
     
