@@ -9,7 +9,7 @@ html, body {
     height: 100%;
 }
 
-/* Dodatkowe stylizacje dla body */
+/* Styl dla body */
 body {
     background-color: #f2f2f2;
     display: flex;
@@ -17,17 +17,22 @@ body {
     justify-content: flex-start;
     align-items: center;
     min-height: 100vh;
-    font-family: Parkinsans, Light300; /* Dodano czcionkę */
+    font-family: 'Parkinsans', Arial, sans-serif; /* Czcionka z fallback */
 }
 
+/* Nagłówek */
 header {
     background-color: #2e8b57;
     color: #fffff0;
-    padding: 10px 20px;
+    padding: 15px 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 100%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
 header .logo-container {
@@ -43,7 +48,7 @@ header .logo {
     width: auto;
     cursor: pointer;
     opacity: 0.8;
-    transition: opacity 0.3s;
+    transition: opacity 0.3s ease-in-out;
 }
 
 header .logo-container:hover {
@@ -59,7 +64,7 @@ header .logo-container:active {
     transform: scale(0.95); /* Delikatne zmniejszenie przy kliknięciu */
 }
 
-
+/* Nawigacja */
 header nav {
     display: flex;
     align-items: center;
@@ -70,22 +75,23 @@ header ul {
     margin: 0;
     padding: 0;
     display: flex;
-    gap: 15px;
-}
-
-header ul li {
-    display: inline;
+    gap: 20px;
 }
 
 header ul li a {
     color: #fffff0;
     text-decoration: none;
-    padding: 5px 10px;
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-weight: 600;
+    transition: all 0.3s ease-in-out;
 }
 
 header ul li a:hover {
-    background-color: #2e8b57;
-    border-radius: 5px;
+    background-color: #fffff0;
+    color: #2e8b57;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 header .login-container {
@@ -94,7 +100,6 @@ header .login-container {
 }
 
 header .login-container a {
-    display: inline-block;
     text-decoration: none;
 }
 
@@ -107,7 +112,7 @@ header .login-icon {
     background-color: rgba(255, 255, 255, 0.8);
     border-radius: 50%;
     padding: 5px;
-    transition: opacity 0.3s, background-color 0.3s;
+    transition: opacity 0.3s, background-color 0.3s ease-in-out;
 }
 
 header .login-icon:hover {
@@ -117,14 +122,15 @@ header .login-icon:hover {
 
 /* Nagłówek główny */
 h1 {
-    font-size: 24px;
+    font-size: 28px;
     color: #333;
-    margin: 20px 0;
+    margin: 30px 0;
     text-align: center;
     width: 100%;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-/* Container dla kategorii */
+/* Kontener kategorii */
 .categories-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -133,10 +139,15 @@ h1 {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
+    animation: fadeIn 1s ease-in-out;
 }
 
-/* Kategoria jako kwadrat */
+/* Element kategorii */
 .category-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     aspect-ratio: 1;
     background-color: #2e8b57;
     border-radius: 10px;
@@ -144,28 +155,28 @@ h1 {
     position: relative;
     cursor: pointer;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    color: #fffff0;
+    font-size: 18px;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .category-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-}
-
-/* Nagłówek kategorii */
-.category-header {
-    background-color: #2e8b57;
-    color: white;
-    padding: 15px;
-    font-size: 18px;
-    text-align: center;
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    background-color: #28a745;
 }
 
 /* Panel z hobby */
 .panel {
     background-color: #ffffff;
-    padding: 15px;
+    padding: 20px;
     height: calc(100% - 50px);
     overflow-y: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .panel ul {
@@ -175,15 +186,16 @@ h1 {
 }
 
 .panel ul li {
-    padding: 8px;
+    padding: 10px;
     margin: 5px 0;
     background-color: #ecf0f1;
     border-radius: 5px;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .panel ul li:hover {
     background-color: #2e8b57;
+    transform: translateX(10px);
 }
 
 .panel ul li a {
@@ -199,22 +211,36 @@ h1 {
 
 /* Przycisk czatu */
 .chat-button {
-    display: block;
-    margin: 15px auto 0;
-    padding: 10px 20px;
+    display: inline-block;
+    margin: 15px auto;
+    padding: 12px 24px;
     background-color: #2e8b57;
     color: white;
     border: none;
     border-radius: 5px;
-    font-size: 1em;
+    font-size: 16px;
     cursor: pointer;
     text-align: center;
     text-decoration: none;
-    width: fit-content;
+    transition: all 0.3s ease-in-out;
 }
 
 .chat-button:hover {
-    background-color: #2fac65;
+    background-color: #28a745;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Animacje */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* Responsywność */
@@ -244,6 +270,6 @@ h1 {
     }
 
     h1 {
-        font-size: 20px;
+        font-size: 24px;
     }
 }

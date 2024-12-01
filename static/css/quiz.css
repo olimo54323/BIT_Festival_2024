@@ -6,28 +6,33 @@
 }
 
 html, body {
-    height: 100%;  /* Zapewni to pełną wysokość strony */
+    height: 100%; /* Pełna wysokość strony */
 }
 
-/* Dodatkowe stylizacje dla body, aby zawsze było centrowane */
+/* Główne stylizacje body */
 body {
     background-color: #f2f2f2;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;  /* Upewniamy się, że strona zaczyna się od góry */
+    justify-content: flex-start; /* Strona zaczyna się od góry */
     align-items: center;
     min-height: 100vh;
-    font-family: Parkinsans, Light300; /* Dodano czcionkę */
+    font-family: 'Parkinsans', Arial, sans-serif; /* Czcionka z fallbackiem */
 }
 
+/* Nagłówek */
 header {
     background-color: #2e8b57;
     color: #fffff0;
-    padding: 10px 20px;
+    padding: 15px 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 100%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
 header .logo-container {
@@ -43,7 +48,7 @@ header .logo {
     width: auto;
     cursor: pointer;
     opacity: 0.8;
-    transition: opacity 0.3s;
+    transition: opacity 0.3s ease-in-out;
 }
 
 header .logo-container:hover {
@@ -59,7 +64,7 @@ header .logo-container:active {
     transform: scale(0.95); /* Delikatne zmniejszenie przy kliknięciu */
 }
 
-
+/* Nawigacja */
 header nav {
     display: flex;
     align-items: center;
@@ -67,25 +72,24 @@ header nav {
 
 header ul {
     list-style-type: none;
-    margin: 0;
-    padding: 0;
     display: flex;
-    gap: 15px;
-}
-
-header ul li {
-    display: inline;
+    gap: 20px;
 }
 
 header ul li a {
     color: #fffff0;
     text-decoration: none;
-    padding: 5px 10px;
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-weight: 600;
+    transition: all 0.3s ease-in-out;
 }
 
 header ul li a:hover {
-    background-color: #2e8b57;
-    border-radius: 5px;
+    background-color: #fffff0;
+    color: #2e8b57;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 header .login-container {
@@ -94,7 +98,6 @@ header .login-container {
 }
 
 header .login-container a {
-    display: inline-block;
     text-decoration: none;
 }
 
@@ -107,7 +110,7 @@ header .login-icon {
     background-color: rgba(255, 255, 255, 0.8);
     border-radius: 50%;
     padding: 5px;
-    transition: opacity 0.3s, background-color 0.3s;
+    transition: opacity 0.3s, background-color 0.3s ease-in-out;
 }
 
 header .login-icon:hover {
@@ -115,34 +118,46 @@ header .login-icon:hover {
     background-color: rgba(255, 255, 255, 1);
 }
 
-
 /* Główna treść */
 main {
     padding: 20px;
     width: 100%;
     max-width: 1200px;
+    animation: fadeIn 1s ease-in-out;
 }
 
 main h1 {
-    font-size: 24px;
+    font-size: 28px;
+    color: #333;
+    text-align: center;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 15px;
 }
 
 main p {
     font-size: 18px;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 20px;
 }
 
 main a {
     display: inline-block;
     margin-top: 20px;
-    padding: 10px 15px;
+    padding: 10px 20px;
     background-color: #28a745;
     color: #fff;
     text-decoration: none;
     border-radius: 5px;
+    transition: all 0.3s ease-in-out;
+    font-size: 16px;
+    text-align: center;
 }
 
 main a:hover {
     background-color: #218838;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 /* Formularz logowania */
@@ -153,12 +168,14 @@ main a:hover {
     background-color: #fff;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
-    margin-top: 30px;  /* Dodatkowy odstęp między nagłówkiem a formularzem */
+    margin-top: 30px;
+    animation: slideIn 0.7s ease-in-out;
 }
 
 form {
     display: flex;
     flex-direction: column;
+    gap: 15px;
 }
 
 label {
@@ -169,33 +186,34 @@ label {
 
 input {
     padding: 10px;
-    margin-bottom: 15px;
     border: 1px solid #ddd;
     border-radius: 4px;
     font-size: 16px;
     outline: none;
+    transition: all 0.3s ease-in-out;
 }
 
 input:focus {
     border-color: #2e8b57;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
+    box-shadow: 0 0 5px rgba(46, 139, 87, 0.4);
 }
 
 input[type="submit"] {
-    padding: 10px;
+    padding: 12px;
     background-color: #2e8b57;
     color: white;
     border: none;
     border-radius: 4px;
     font-size: 16px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s ease-in-out;
 }
 
 input[type="submit"]:hover {
-    background-color: #2e8b57;
+    background-color: #28a745;
 }
 
+/* Linki */
 p {
     text-align: center;
     margin-top: 10px;
@@ -205,6 +223,7 @@ p {
 a {
     text-decoration: none;
     color: #2e8b57;
+    font-weight: bold;
 }
 
 a:hover {
@@ -216,13 +235,35 @@ footer {
     background-color: #2e8b57;
     color: #fffff0;
     text-align: center;
-    padding: 10px 0;
-    position: relative;
-    bottom: 0;
-    width: 100%;
+    padding: 15px 0;
+    margin-top: auto;
+    box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Responsywność dla urządzeń mobilnych */
+/* Animacje */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Responsywność */
 @media (max-width: 768px) {
     header {
         flex-direction: column;
@@ -240,5 +281,9 @@ footer {
 
     main {
         padding: 15px;
+    }
+
+    main h1 {
+        font-size: 24px;
     }
 }
