@@ -189,6 +189,10 @@ VALUES ("5", "Technologiczne", "1970-01-01 10:10:10 ", "1" ),
 
 -- @block
 UPDATE hobbys
+SET description = 'Pisanie to proces wyrażania myśli, uczuć lub informacji za pomocą słów zapisanych na papierze lub w formie cyfrowej.'
+WHERE hobby_id = 1;
+
+UPDATE hobbys
 SET description = 'Tworzenie obrazów za pomocą aparatu, uchwycenie chwili, emocji lub piękna świata.'
 WHERE hobby_id = 2;
 
