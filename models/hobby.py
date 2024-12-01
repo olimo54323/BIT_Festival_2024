@@ -10,4 +10,5 @@ class Hobby(db.Model):
     axis_x = db.Column(db.Integer, nullable=False)
     axis_y = db.Column(db.Integer, nullable=False)
     description = db.Column(db.Text, nullable=True)  # Nowe pole opisowe
+    long_description = db.Column(db.Text, nullable=True)
     category_id = db.Column(db.Integer, db.ForeignKey('categories.category_id'), nullable=False)

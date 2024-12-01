@@ -227,3 +227,48 @@ WHERE hobby_id = 9;
 UPDATE hobbys
 SET description = 'Tworzenie kodu komputerowego, który pozwala maszynom wykonywać określone zadania.'
 WHERE hobby_id = 10;
+
+-- @block
+ALTER TABLE HOBBYS
+ADD long_description TEXT;
+
+-- @block
+UPDATE hobbys
+SET long_description = 'Pisanie to proces wyrażania myśli, uczuć lub wiedzy za pomocą słów zapisanych na papierze, w dokumencie cyfrowym czy w innej formie trwałej. Jest to fundamentalna umiejętność komunikacyjna, która pozwala na przekazywanie informacji, opowiadanie historii czy dzielenie się refleksjami. Pisanie ma wiele form – od literatury pięknej, takiej jak powieści i wiersze, przez teksty publicystyczne, po raporty naukowe czy dokumenty biznesowe.'
+WHERE hobby_id = 1;
+
+UPDATE hobbys  
+SET long_description = 'Fotografia to sztuka i technika uchwycenia obrazów za pomocą aparatu, która pozwala zatrzymać chwile, emocje i piękno otaczającego świata. Dzięki wykorzystaniu światła, kompozycji i perspektywy fotografowie tworzą dzieła, które mogą dokumentować rzeczywistość, wywoływać emocje lub służyć jako forma artystycznej ekspresji. Fotografia znajduje zastosowanie w wielu dziedzinach, takich jak reportaż, moda, reklama czy sztuka.'  
+WHERE hobby_id = 2;
+
+UPDATE hobbys  
+SET long_description = 'Malowanie to forma artystycznego wyrażania siebie, polegająca na nakładaniu farb na różne powierzchnie, takie jak płótno, papier czy mur. Jest to proces twórczy, w którym artysta za pomocą kolorów, faktur i technik, takich jak akwarele, farby olejne czy akryle, tworzy obrazy oddające emocje, idee lub wizje. Malowanie może być zarówno hobby, jak i profesjonalnym zajęciem w dziedzinach takich jak sztuka czy dekoracja.'  
+WHERE hobby_id = 3;
+
+UPDATE hobbys  
+SET long_description = 'Gra w piłkę nożną to popularny sport zespołowy, który polega na rywalizacji dwóch drużyn dążących do zdobycia większej liczby goli niż przeciwnik. Wymaga świetnej kondycji, współpracy, umiejętności technicznych i strategii. Piłka nożna jest sportem dostępnym na całym świecie, zarówno na poziomie rekreacyjnym, jak i profesjonalnym, a jej popularność łączy ludzi z różnych kultur i środowisk.'  
+WHERE hobby_id = 4;
+
+UPDATE hobbys  
+SET long_description = 'Wspinaczka to sport i forma rekreacji, która polega na pokonywaniu pionowych ścian skalnych, sztucznych ścianek lub tras górskich. Wymaga siły fizycznej, koncentracji, odwagi i odpowiedniej techniki. Jest doskonałym sposobem na rozwój kondycji, pokonywanie własnych ograniczeń oraz eksplorację natury.'  
+WHERE hobby_id = 5;
+
+UPDATE hobbys  
+SET long_description = 'Szachy to strategiczna gra planszowa, w której dwóch graczy rywalizuje, przesuwając figury po szachownicy zgodnie z ustalonymi regułami. Celem jest zamatowanie króla przeciwnika. Szachy rozwijają umiejętność logicznego myślenia, planowania i przewidywania ruchów przeciwnika, czyniąc je doskonałym treningiem dla umysłu oraz popularną formą rozrywki intelektualnej.'  
+WHERE hobby_id = 6;
+
+UPDATE hobbys  
+SET long_description = 'Gry planszowe to różnorodne formy rozrywki towarzyskiej, polegające na rywalizacji lub współpracy graczy na planszy z określonymi zasadami. Mogą mieć charakter edukacyjny, strategiczny, przygodowy czy logiczny, rozwijając takie umiejętności jak myślenie analityczne, praca zespołowa czy kreatywność. Są doskonałym sposobem na spędzanie czasu z rodziną i przyjaciółmi.'  
+WHERE hobby_id = 7;
+
+UPDATE hobbys  
+SET long_description = 'Pływanie to aktywność fizyczna i forma rekreacji, która polega na przemieszczaniu się w wodzie za pomocą różnych technik, takich jak kraul, żabka czy styl grzbietowy. Jest to sport wszechstronnie rozwijający organizm, poprawiający kondycję, wzmacniający mięśnie i korzystnie wpływający na zdrowie psychiczne. Pływanie może być uprawiane zarówno rekreacyjnie, jak i zawodowo.'  
+WHERE hobby_id = 8;
+
+UPDATE hobbys  
+SET long_description = 'Wędkowanie to hobby i forma rekreacji, która polega na łowieniu ryb przy użyciu wędki, żyłki, przynęty i odpowiedniej techniki. Jest to zajęcie, które łączy cierpliwość, precyzję i znajomość natury, oferując jednocześnie relaks i kontakt z przyrodą. Dla wielu osób wędkowanie to również sposób na medytację i oderwanie się od codziennych trosk.'  
+WHERE hobby_id = 9;
+
+UPDATE hobbys  
+SET long_description = 'Programowanie to proces tworzenia kodu komputerowego, który instruuje maszyny, jak realizować określone zadania. Wymaga znajomości języków programowania, takich jak Python, Java czy C++, a także umiejętności analitycznego myślenia i rozwiązywania problemów. Programowanie znajduje zastosowanie w tworzeniu aplikacji, stron internetowych, gier czy systemów operacyjnych, stanowiąc kluczowy element współczesnej technologii.'  
+WHERE hobby_id = 10;
