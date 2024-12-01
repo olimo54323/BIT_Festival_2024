@@ -272,3 +272,6 @@ WHERE hobby_id = 9;
 UPDATE hobbys  
 SET long_description = 'Programowanie to proces tworzenia kodu komputerowego, który instruuje maszyny, jak realizować określone zadania. Wymaga znajomości języków programowania, takich jak Python, Java czy C++, a także umiejętności analitycznego myślenia i rozwiązywania problemów. Programowanie znajduje zastosowanie w tworzeniu aplikacji, stron internetowych, gier czy systemów operacyjnych, stanowiąc kluczowy element współczesnej technologii.'  
 WHERE hobby_id = 10;
+
+
+
