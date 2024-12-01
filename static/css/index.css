@@ -222,7 +222,7 @@ p {
 
 a {
     text-decoration: none;
-    color: #ffffff;
+    color: #000000;
 }
 
 a:hover {
@@ -231,7 +231,7 @@ a:hover {
 
 b {
     text-decoration: none;
-    color: #000000;
+    color: #ffffff;
 }
 
 b:hover {
