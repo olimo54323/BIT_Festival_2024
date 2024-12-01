@@ -41,8 +41,10 @@
 </header>
 <body>
     <h1>{{ hobby.hobby }}</h1>
-    <p>{{ hobby.description }}</p>
+    <p style="font-size: 1.2rem; line-height: 1.6;">{{ hobby.description }}</p>
+    <img src="{{ url_for('static', filename='images/' + hobby.hobby_id|string + '.png') }}" alt="{{ hobby.hobby }}" class="hobby-image">
+    
     <h2>Więcej informacji</h2>
-    <p>{{ hobby.long_description }}</p>
+    <p style="font-size: 1.1rem; line-height: 1.6;">{{ hobby.long_description }}</p>
 </body>
 </html>
