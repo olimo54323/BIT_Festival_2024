@@ -77,13 +77,17 @@ header ul li a {
     color: #fffff0;
     text-decoration: none;
     padding: 5px 10px;
+    transition: background-color 0.3s, color 0.3s;
 }
 
+/* Styl hover dla linków w nagłówku */
 header ul li a:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-    border-radius: 5px;
+    background-color: #fffff0;
+    color: #2e8b57;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
-
+/* Pozostała stylizacja jak wcześniej */
 header .login-container {
     display: flex;
     align-items: center;
@@ -114,12 +118,13 @@ header .login-icon:hover {
 /* Formularz rejestracji */
 .container {
     width: 100%;
-    max-width: 400px;
-    padding: 20px;
+    max-width: 500px; /* Zwiększyłem szerokość formularza, by był bardziej przestronny */
+    padding: 25px;
     background-color: #fff;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     margin-top: 30px;
+    animation: fadeIn 0.8s ease-in-out;
 }
 
 form {
@@ -134,12 +139,13 @@ label {
 }
 
 input {
-    padding: 10px;
+    padding: 12px;
     margin-bottom: 15px;
     border: 1px solid #ddd;
-    border-radius: 4px;
+    border-radius: 6px;
     font-size: 16px;
     outline: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
 }
 
 input:focus {
@@ -147,34 +153,53 @@ input:focus {
     box-shadow: 0 0 5px rgba(46, 139, 87, 0.2);
 }
 
+/* Przycisk wysyłania formularza */
 input[type="submit"] {
-    padding: 10px;
+    padding: 12px;
     background-color: #2e8b57;
     color: white;
     border: none;
-    border-radius: 4px;
+    border-radius: 6px;
     font-size: 16px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, transform 0.3s;
 }
 
 input[type="submit"]:hover {
     background-color: #218838;
+    transform: translateY(-3px);
+}
+
+input[type="submit"]:active {
+    transform: scale(0.98);
 }
 
 p {
     text-align: center;
-    margin-top: 10px;
+    margin-top: 15px;
     color: #555;
 }
 
 a {
     text-decoration: none;
     color: #2e8b57;
+    font-weight: bold;
 }
 
 a:hover {
     text-decoration: underline;
+}
+
+/* Animacja fadeIn */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* Responsywność dla urządzeń mobilnych */
@@ -195,5 +220,10 @@ a:hover {
 
     .container {
         padding: 15px;
+        width: 90%;
+    }
+
+    h1 {
+        font-size: 24px;
     }
 }
