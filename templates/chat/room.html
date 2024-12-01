@@ -70,7 +70,7 @@
                                     <div>
                                         {{ message.content }}
                                     </div>
-                                    <div class="text-xs {% if message.user_id == current_user.user_id %}text-blue-100{% else %}text-gray-500{% endif %} mt-1">
+                                    <div class="text-xs {% if message.user_id == current_user.user_id %}text-green-100{% else %}text-gray-500{% endif %} mt-1">
                                         {{ message.timestamp.strftime('%H:%M') }}
                                     </div>
                                 </div>
