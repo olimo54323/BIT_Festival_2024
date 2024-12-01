@@ -256,6 +256,7 @@ def handle_message(data):
     room_id = data['room']
     content = data['message']
     
+    # Create and save new message
     new_message = Message(
         content=content,
         room_id=room_id,
@@ -264,10 +265,11 @@ def handle_message(data):
     db.session.add(new_message)
     db.session.commit()
     
+    # Emit the message to all users in the room
     emit('message', {
         'user': current_user.name,
         'message': content,
-        'timestamp': datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')
+        'timestamp': datetime.utcnow().strftime('%H:%M')
     }, room=room_id)
 
 def vector_search(total_score_x, total_score_y, top_n=5):

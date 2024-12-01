@@ -1,0 +1,39 @@
+/* Chat Room Button Styles */
+.send-button {
+    display: block;
+    padding: 10px 20px;
+    background-color: #2e8b57;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    text-align: center;
+    width: fit-content;
+    transition: background-color 0.3s ease;
+}
+
+.send-button:hover {
+    background-color: #2fac65;
+}
+
+.send-button:active {
+    transform: scale(0.98);
+}
+
+/* Input field styling to match button aesthetics */
+.message-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #2e8b57;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    font-size: 1em;
+    outline-color: #2e8b57;
+}
+
+.send-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}

@@ -186,3 +186,40 @@ VALUES ("5", "Technologiczne", "1970-01-01 10:10:10 ", "1" ),
        ("2", "Sportowe", "1970-01-01 10:10:10 ", "1" ),
        ("3", "Umysłowe", "1970-01-01 10:10:10 ", "1" ),
        ("4", "Zewnętrzne", "1970-01-01 10:10:10 ", "1" );
+
+-- @block
+UPDATE hobbys
+SET description = 'Tworzenie obrazów za pomocą aparatu, uchwycenie chwili, emocji lub piękna świata.'
+WHERE hobby_id = 2;
+
+UPDATE hobbys
+SET description = 'Wyrażanie emocji i wizji poprzez nakładanie farb na płótno lub inną powierzchnię.'
+WHERE hobby_id = 3;
+
+UPDATE hobbys
+SET description = 'Dynamiczna rywalizacja zespołów polegająca na zdobywaniu goli przy użyciu piłki.'
+WHERE hobby_id = 4;
+
+UPDATE hobbys
+SET description = 'Pokonywanie pionowych ścian i skał, wymagające siły, techniki i odwagi.'
+WHERE hobby_id = 5;
+
+UPDATE hobbys
+SET description = 'Strategiczna gra planszowa, w której dwie osoby rywalizują na szachownicy.'
+WHERE hobby_id = 6;
+
+UPDATE hobbys
+SET description = 'Rozrywka towarzyska polegająca na rywalizacji lub współpracy na planszy z regułami.'
+WHERE hobby_id = 7;
+
+UPDATE hobbys
+SET description = 'Przemieszczanie się w wodzie za pomocą różnych technik ruchu ciała.'
+WHERE hobby_id = 8;
+
+UPDATE hobbys
+SET description = 'Cierpliwe łowienie ryb za pomocą wędki, przynęty i odpowiedniej techniki.'
+WHERE hobby_id = 9;
+
+UPDATE hobbys
+SET description = 'Tworzenie kodu komputerowego, który pozwala maszynom wykonywać określone zadania.'
+WHERE hobby_id = 10;
