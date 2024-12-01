@@ -333,15 +333,3 @@ footer {
 .btn:hover {
     background-color: #218838;
 }
-
-.category-link {
-    text-decoration: none; /* Remove underline */
-    font-weight: bold; /* Make the text bold */
-    color: inherit; /* Inherit the color from the parent element (optional) */
-    transition: color 0.3s ease, transform 0.3s ease; /* Smooth transition for hover effects */
-}
-
-.category-link:hover {
-    color: #007bff; /* Change to a blue color on hover */
-    transform: scale(1.1); /* Slightly enlarge the link on hover */
-}
