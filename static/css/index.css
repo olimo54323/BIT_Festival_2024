@@ -79,14 +79,24 @@ header ul li {
 }
 
 header ul li a {
-    color: #fffff0;
-    text-decoration: none;
-    padding: 5px 10px;
+    position: relative;
+    overflow: hidden;
 }
 
-header ul li a:hover {
-    background-color: #2e8b57;
-    border-radius: 5px;
+header ul li a::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background-color: #fffff0;
+    transition: width 0.3s ease, left 0.3s ease;
+}
+
+header ul li a:hover::after {
+    width: 100%;
+    left: 0;
 }
 
 header .login-container {
@@ -135,15 +145,21 @@ main p {
 main a {
     display: inline-block;
     margin-top: 20px;
-    padding: 10px 15px;
-    background-color: #28a745;
+    padding: 12px 20px;
+    background-color: #2e8b57;
     color: #fff;
     text-decoration: none;
     border-radius: 5px;
+    font-size: 18px;
+    font-weight: 600;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
 }
 
 main a:hover {
     background-color: #218838;
+    transform: scale(1.1);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
 }
 
 /* Formularz logowania */
@@ -175,27 +191,31 @@ input {
     border-radius: 4px;
     font-size: 16px;
     outline: none;
+    transition: all 0.3s ease;
 }
 
 input:focus {
     border-color: #2e8b57;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
+    box-shadow: 0 0 10px rgba(46, 139, 87, 0.5);
+    transform: scale(1.02);
 }
 
 input[type="submit"] {
-    padding: 10px;
+    padding: 12px;
     background-color: #2e8b57;
     color: white;
     border: none;
     border-radius: 4px;
     font-size: 16px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, transform 0.3s;
 }
 
 input[type="submit"]:hover {
-    background-color: #2e8b57;
+    background-color: #218838;
+    transform: scale(1.05);
 }
+
 
 p {
     text-align: center;
@@ -253,6 +273,18 @@ footer {
     gap: 20px;
     justify-content: center;
     margin-top: 20px;
+    animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .hobby-item {
@@ -261,12 +293,14 @@ footer {
     padding: 15px;
     width: 300px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .hobby-item:hover {
-    transform: scale(1.05);
+    transform: translateY(-10px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
+
 
 .hobby-item h3 {
     color: #2e8b57;

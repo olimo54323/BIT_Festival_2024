@@ -5,7 +5,8 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from math import sqrt
 from flask_socketio import SocketIO, emit, join_room, leave_room
 from datetime import datetime
-
+from flask import redirect, url_for, flash
+from flask_login import logout_user
 from models import db
 from models.user import User
 from models.question import Question
