@@ -6,47 +6,33 @@
 }
 
 html, body {
-    height: 100%;  /* Zapewni to pełną wysokość strony */
+    height: 100%;
 }
 
-/* Dodatkowe stylizacje dla body, aby zawsze było centrowane */
+/* Styl dla body */
 body {
     background-color: #f2f2f2;
+    font-family: 'Parkinsans', Arial, sans-serif; /* Czcionka z fallback */
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;  /* Upewniamy się, że strona zaczyna się od góry */
+    justify-content: center;
     align-items: center;
     min-height: 100vh;
-    font-family: Parkinsans, Light300; /* Dodano czcionkę */
 }
 
-/* Stylizacja headera */
+/* Nagłówek */
 header {
     background-color: #2e8b57;
     color: #fffff0;
-    padding: 15px 20px; /* Zwiększamy padding */
+    padding: 15px 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    height: 80px; /* Ustawiamy stałą wysokość nagłówka */
-}
-
-header .logo-container {
-    display: flex;
-    align-items: center;
-}
-
-header .logo {
-    max-height: 50px;
-}header {
-    background-color: #2e8b57;
-    color: #fffff0;
-    padding: 10px 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
 header .logo-container {
@@ -62,7 +48,7 @@ header .logo {
     width: auto;
     cursor: pointer;
     opacity: 0.8;
-    transition: opacity 0.3s;
+    transition: opacity 0.3s ease-in-out;
 }
 
 header .logo-container:hover {
@@ -78,186 +64,111 @@ header .logo-container:active {
     transform: scale(0.95); /* Delikatne zmniejszenie przy kliknięciu */
 }
 
-
-header nav {
-    display: flex;
-    align-items: center;
-}
-
-header ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    gap: 15px;
-}
-
-header ul li {
-    display: inline;
-}
-
-header ul li a {
-    color: #fffff0;
-    text-decoration: none;
-    padding: 5px 10px;
-}
-
-header ul li a:hover {
-    background-color: #2e8b57;
-    border-radius: 5px;
-}
-
-header .login-container {
-    display: flex;
-    align-items: center;
-}
-
-header .login-container a {
-    display: inline-block;
-    text-decoration: none;
-}
-
-header .login-icon {
-    max-height: 40px;
-    width: auto;
-    cursor: pointer;
-    margin-left: 10px;
-    opacity: 0.8;
-    background-color: rgba(255, 255, 255, 0.8);
-    border-radius: 50%;
-    padding: 5px;
-    transition: opacity 0.3s, background-color 0.3s;
-}
-
-header .login-icon:hover {
-    opacity: 1;
-    background-color: rgba(255, 255, 255, 1);
-}
-
-/* Główna treść */
-main {
-    padding: 20px;
-    width: 100%;
-    max-width: 1200px;
-}
-
-main h1 {
-    font-size: 24px;
-}
-
-main p {
-    font-size: 18px;
-}
-
-main a {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 10px 15px;
-    background-color: #28a745;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 5px;
-}
-
-main a:hover {
-    background-color: #218838;
-}
-
 /* Formularz logowania */
 .container {
+    background-color: #ffffff;
+    padding: 30px 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     width: 100%;
-    max-width: 400px;
-    padding: 20px;
-    background-color: #fff;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    margin-top: 30px;  /* Dodatkowy odstęp między nagłówkiem a formularzem */
+    max-width: 500px;
+    margin: 20px auto;
+    animation: fadeIn 1s ease-in-out;
 }
 
-form {
-    display: flex;
-    flex-direction: column;
+h1 {
+    font-size: 32px;
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+/* Pola formularza */
 label {
     font-size: 16px;
-    color: #555;
     margin-bottom: 8px;
+    color: #333;
+    display: block;
 }
 
-input {
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+input[type="text"], input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
     font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus, input[type="password"]:focus {
+    border-color: #2e8b57;
     outline: none;
 }
 
-input:focus {
-    border-color: #2e8b57;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
-}
-
+/* Przycisk logowania */
 input[type="submit"] {
-    padding: 10px;
+    width: 100%;
+    padding: 12px;
     background-color: #2e8b57;
     color: white;
+    font-size: 18px;
     border: none;
-    border-radius: 4px;
-    font-size: 16px;
+    border-radius: 8px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: all 0.3s ease-in-out;
 }
 
 input[type="submit"]:hover {
-    background-color: #2e8b57;
+    background-color: #28a745;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+input[type="submit"]:active {
+    transform: scale(0.98); /* Delikatne zmniejszenie przy kliknięciu */
+}
+
+/* Linki */
 p {
     text-align: center;
-    margin-top: 10px;
-    color: #555;
+    margin-top: 20px;
+    font-size: 16px;
 }
 
-a {
-    text-decoration: none;
+p a {
     color: #2e8b57;
+    font-weight: bold;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
 }
 
-a:hover {
+p a:hover {
+    color: #28a745;
     text-decoration: underline;
 }
 
-/* Stopka */
-footer {
-    background-color: #2e8b57;
-    color: #fffff0;
-    text-align: center;
-    padding: 10px 0;
-    position: relative;
-    bottom: 0;
-    width: 100%;
+/* Animacja fadeIn */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-/* Responsywność dla urządzeń mobilnych */
+/* Responsywność */
 @media (max-width: 768px) {
-    header {
-        flex-direction: column;
-        align-items: flex-start;
-        height: auto; /* Zmieniamy wysokość na 'auto' na mniejszych ekranach */
+    .container {
+        padding: 20px;
+        width: 90%;
     }
 
-    header nav {
-        margin-top: 10px;
-    }
-
-    header ul {
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    main {
-        padding: 15px;
+    h1 {
+        font-size: 28px;
     }
 }
