@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Odkryj Swoje Hobby</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/header.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/categories.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Parkinsans:wght@300..800&display=swap" rel="stylesheet">
@@ -58,6 +58,7 @@
                     <p>{{ hobby.description }}</p>
                 </div>
                 {% endfor %}
+                <h2>Jeżeli nic z tego cię nie interesuje, zapoznaj się z zakładką <a href="{{ url_for('categories') }}" class="category-link">Kategorie</a></h2>
             </div>
         {% else %}
             <p>Aby uzyskać spersonalizowane rekomendacje hobby, przejdź do quizu!</p>

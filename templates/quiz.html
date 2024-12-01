@@ -74,7 +74,7 @@
             </div>
             <div class="navigation">
                 {% if question_id > 1 %}
-                <a href="{{ url_for('single_question', question_id=question_id - 1) }}"><button type="button">Poprzednie pytanie</button></a>
+                <a href="{{ url_for('single_question', question_id=question_id - 1) }}"><input type="submit" value="Poprzednie pytanie"></a>
                 {% endif %}
                 <input type="submit" value="Zatwierdź i przejdź dalej">
             </div>
